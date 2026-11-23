@@ -1,0 +1,154 @@
+---
+import { PLAY_STORE_URL, ADMIN_CRM_URL } from '../data/navigation';
+---
+
+<footer class="site-footer">
+  <!-- Background image with burgundy overlay -->
+  <div class="footer-overlay"></div>
+  
+  <div class="container footer-main">
+    <div class="showroom-cta">
+      <h2>Where Trust Meets Growth</h2>
+      <a href="/contact" class="btn-outline" style="background:#fff; color:var(--color-burgundy); border:none;">Visit Us Today</a>
+    </div>
+    
+    <div class="footer-links-grid">
+      <div class="brand-col">
+        <img src="/images/logo.avif" alt="Suvarna Bhagya" class="footer-logo" />
+        <p>Crafting Contemporary Heritage Since 1992. A legacy built on trust, transparency, and timeless design.</p>
+      </div>
+      
+      <div class="links-col">
+        <h4>EXPLORE</h4>
+        <ul>
+          <li><a href="#">Collections</a></li>
+          <li><a href="#">Bridal</a></li>
+          <li><a href="#">Trending Collection</a></li>
+        </ul>
+      </div>
+      
+      <div class="links-col">
+        <h4>ABOUT</h4>
+        <ul>
+          <li><a href="/about">Our Journey</a></li>
+          <li><a href="/about">Our Foundation</a></li>
+          <li><a href="/about">Our Protocol</a></li>
+          <li><a href="/about">Our Mindset</a></li>
+        </ul>
+      </div>
+      
+      <div class="links-col">
+        <h4>SERVICES</h4>
+        <ul>
+          <li><a href="/plans">Suvarna Bhagya</a></li>
+          <li><a href="/contact">Book Consultation</a></li>
+          <li><a href="/faq">FAQs</a></li>
+        </ul>
+      </div>
+      
+      <div class="links-col">
+        <h4>CONNECT</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Google</a></li>
+          <li><a href="#">WhatsApp</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+        </ul>
+      </div>
+      
+      <div class="qr-col">
+        <div class="qr-box">
+          <img src="/images/QR.JPG" alt="Scan to Download" style="width:100%; border-radius:4px;" />
+        </div>
+        <div class="store-buttons">
+           <a href={PLAY_STORE_URL} class="store-mini"><span>▶</span> Google Play</a>
+           <!-- <a href="#" class="store-mini"><span></span> App Store</a> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    <div class="container bottom-inner">
+      <p>© {new Date().getFullYear()} ALL RIGHTS RESERVED BY SUVARNA BHAGYA.</p>
+      <div class="legal-links">
+        <a href="/privacy-policy">PRIVACY POLICY</a> | 
+        <a href="/terms">TERMS & CONDITION</a>
+        <!-- STEALTH ADMIN LINK -->
+        <!-- <a href={ADMIN_CRM_URL} target="_blank" class="admin-link">Admin Login</a> -->
+      </div>
+      <p>CRAFTED AND DESIGNED BY SANJAY</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    position: relative;
+    background-color: var(--color-burgundy-dark);
+    color: #fff;
+    padding-top: 6rem;
+    overflow: hidden;
+  }
+  
+  /* Optional: Add a background image here if you have a showroom photo */
+  .footer-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(107,15,42,0.85), rgba(74,10,29,1));
+    z-index: 1;
+  }
+  
+  .footer-main { position: relative; z-index: 2; }
+  
+  .showroom-cta { text-align: center; margin-bottom: 5rem; }
+  .showroom-cta h2 { color: #fff; font-size: 3.5rem; margin-bottom: 2rem; font-style: italic; font-weight: 400; }
+  
+  .footer-links-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1.5fr;
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+  
+  .brand-col p { color: #cca3b0; font-size: 0.9rem; margin-top: 1rem; line-height: 1.6; }
+  .footer-logo { height: 40px; }
+  
+  .links-col h4 { color: #fff; font-family: var(--font-body); font-size: 0.85rem; letter-spacing: 1px; margin-bottom: 1.5rem; }
+  .links-col ul { list-style: none; }
+  .links-col li { margin-bottom: 0.8rem; }
+  .links-col a { color: #cca3b0; font-size: 0.9rem; transition: color 0.3s; }
+  .links-col a:hover { color: var(--color-gold); }
+  
+  .qr-box { width: 100px; height: 100px; background: #fff; padding: 5px; border-radius: 4px; margin-bottom: 1rem; }
+  .store-buttons { display: flex; flex-direction: column; gap: 0.5rem; }
+  .store-mini {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #000; border: 1px solid #444; border-radius: 4px;
+    padding: 0.4rem 0.8rem; font-size: 0.7rem; color: #fff;
+  }
+  
+  .footer-bottom {
+    position: relative; z-index: 2;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 1.5rem 0; font-size: 0.7rem; color: #b08794;
+  }
+  .bottom-inner { display: flex; justify-content: space-between; align-items: center; }
+  .legal-links { display: flex; align-items: center; gap: 0.5rem; }
+  .legal-links a:hover { color: #fff; }
+  
+  /* Stealth Admin Login */
+  .admin-link {
+    margin-left: 1rem; color: #7a2e45; /* Barely visible */
+    transition: color 0.3s ease; font-weight: 600;
+  }
+  .admin-link:hover { color: var(--color-gold); }
+  
+  @media (max-width: 1024px) {
+    .footer-links-grid { grid-template-columns: 1fr 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .footer-links-grid { grid-template-columns: 1fr 1fr; }
+    .showroom-cta h2 { font-size: 2.5rem; }
+    .bottom-inner { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>

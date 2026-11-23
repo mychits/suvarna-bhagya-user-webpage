@@ -1,0 +1,129 @@
+---
+import { PLAY_STORE_URL } from '../data/navigation';
+---
+
+<section class="hero-banner">
+  <div class="container hero-inner">
+    <div class="hero-content">
+      <span class="badge">SAVINGS SCHEME</span>
+      <h1>Suvarna Bhagya<br/>Savings Scheme</h1>
+      
+      <ul class="hero-features">
+        <li>Pay 11 monthly installments and get the 12th installment as a bonus.</li>
+        <li>Redeem for any hallmark jewellery with no hidden making charges or wastage.</li>
+        <li>Flexible monthly installments starting as low as ₹1,000.</li>
+      </ul>
+      
+      <a href="/plans" class="btn-outline">JOIN THE SCHEME</a>
+    </div>
+    
+    <div class="hero-graphics">
+      <!-- Floating Member Card -->
+      <div class="member-card">
+        <div class="card-top">
+          <div>
+            <h4>SUVARNA BHAGYA</h4>
+            <span class="priority">PRIORITY MEMBER</span>
+          </div>
+          <div class="gold-icon">👑</div>
+        </div>
+        <div class="gold-chip"></div>
+        <div class="card-number">•••• •••• •••• 1993</div>
+        <div class="card-bottom">
+          <div>
+            <span>MEMBER SINCE</span>
+            <strong>10 / 22</strong>
+          </div>
+          <div class="brand-name">Suvarna Jewellers</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-banner {
+    background: radial-gradient(circle at 30% 50%, #8a1335 0%, var(--color-burgundy) 100%);
+    padding: 8rem 0;
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero-inner { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; }
+  
+  .badge {
+    display: inline-block;
+    border: 1px solid var(--color-gold);
+    color: var(--color-gold);
+    padding: 0.4rem 1rem;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-content h1 {
+    font-size: 3.5rem;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+  }
+  
+  .hero-features { list-style: none; margin-bottom: 3rem; }
+  .hero-features li {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+    color: #f0f0f0;
+  }
+  .hero-features li::before {
+    content: '✓';
+    position: absolute; left: 0; top: 2px;
+    color: var(--color-gold);
+    font-weight: bold;
+  }
+  
+  /* The 3D-looking Card */
+  .member-card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 16px;
+    padding: 2.5rem;
+    max-width: 400px;
+    margin: 0 auto;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 2;
+  }
+  .card-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .card-top h4 { color: #fff; margin: 0; font-family: var(--font-body); font-size: 1.1rem; letter-spacing: 1px; }
+  .priority { font-size: 0.7rem; color: var(--color-gold); letter-spacing: 1px; }
+  .gold-icon { font-size: 1.5rem; }
+  
+  .gold-chip {
+    width: 40px; height: 30px;
+    background: linear-gradient(135deg, #d4af37 0%, #aa8529 100%);
+    border-radius: 6px;
+    margin: 2rem 0 1rem;
+  }
+  
+  .card-number {
+    font-family: monospace;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+    color: rgba(255,255,255,0.8);
+  }
+  
+  .card-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
+  .card-bottom span { display: block; font-size: 0.6rem; color: #ccc; letter-spacing: 1px; }
+  .card-bottom strong { font-size: 0.9rem; font-family: monospace; }
+  .brand-name { font-family: var(--font-heading); font-style: italic; font-size: 1.2rem; color: var(--color-gold); }
+  
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .hero-features li { text-align: left; }
+    .hero-content h1 { font-size: 2.5rem; }
+  }
+</style>

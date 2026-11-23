@@ -1,0 +1,82 @@
+---
+---
+
+<section class="about-section">
+  <div class="container about-inner">
+    <div class="about-image">
+      <!-- Replace with your actual golden pot image -->
+      <div class="image-placeholder">
+        <p>Golden Pot Image Here</p>
+      </div>
+      <div class="trust-badge">
+        <strong>30+</strong>
+        <span>YEARS OF TRUST</span>
+      </div>
+    </div>
+    
+    <div class="about-content">
+      <div class="section-header left-align">
+        <span class="eyebrow">— ABOUT THE SCHEME</span>
+        <h2>Suvarna Bhagya Scheme</h2>
+      </div>
+      <p>The Suvarna Bhagya Scheme is designed to make jewellery purchases easier, more disciplined, and more rewarding. Instead of a large one-time purchase, you save a fixed amount every month and gradually build your jewellery purchase value.</p>
+      <p>Whether you prefer accumulating gold or saving money for your future jewellery purchase, Suvarna Bhagya provides flexible options to suit your financial goals.</p>
+      <p>With complete transparency, secure digital records, timely reminders, and dedicated customer support — the scheme ensures a smooth and worry-free experience.</p>
+      
+      <div class="tags">
+        <span>KYC Verified</span>
+        <span>No Hidden Charges</span>
+        <span>Live Tracking</span>
+        <span>Secure App</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-section { padding: 8rem 0; background: var(--color-ivory); }
+  .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  
+  .about-image { position: relative; }
+  .image-placeholder {
+    width: 100%; height: 450px;
+    background: #f2e3d5;
+    border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    color: #b08d36;
+  }
+  .trust-badge {
+    position: absolute;
+    bottom: -20px; right: -20px;
+    background: var(--color-burgundy);
+    color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(107, 15, 42, 0.3);
+  }
+  .trust-badge strong { display: block; font-size: 2rem; font-family: var(--font-heading); color: var(--color-gold); }
+  .trust-badge span { font-size: 0.7rem; letter-spacing: 1px; }
+  
+  .section-header.left-align { text-align: left; margin-bottom: 2rem; }
+  .section-header.left-align .eyebrow { justify-content: flex-start; }
+  .section-header.left-align .eyebrow::before { display: none; }
+  .section-header.left-align h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+  
+  .about-content p { color: var(--color-text-light); margin-bottom: 1.5rem; font-size: 1.05rem; }
+  
+  .tags { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2rem; }
+  .tags span {
+    background: #f7eedc;
+    color: #8c6825;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  
+  @media (max-width: 900px) {
+    .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .trust-badge { right: 20px; }
+  }
+</style>

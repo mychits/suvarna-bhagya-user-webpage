@@ -1,0 +1,48 @@
+---
+interface Props {
+  type: 'weight' | 'amount';
+  title: string;
+  subtitle: string;
+  features: string[];
+}
+const { type, title, subtitle, features } = Astro.props;
+
+// Helper to render a checkmark icon
+const CheckIcon = `<svg class="icon-svg icon-sm" style="color:var(--color-gold); flex-shrink:0; margin-top:3px;" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"></path></svg>`;
+---
+
+<div class={`scheme-card ${type}`}>
+  <div class="badge-wrap">
+    <span class="type-badge">{type === 'weight' ? 'WEIGHT BASED' : 'AMOUNT BASED'}</span>
+  </div>
+  <h3>{title}</h3>
+  <p class="subtitle">{subtitle}</p>
+  
+  <ul class="features-list">
+    {features.map((f) => (
+      <li>
+        <Fragment set:html={CheckIcon} />
+        <span>{f}</span>
+      </li>
+    ))}
+  </ul>
+  
+  <div class="card-footer">
+    {type === 'weight' ? 'BIS Hallmarked - 22K / 18K Gold available' : 'Secure - Transparent Ledger - Digital Receipts'}
+  </div>
+</div>
+
+<style>
+  .scheme-card { border-radius: 16px; padding: 2rem; color: #fff; display: flex; flex-direction: column; height: 100%; }
+  .scheme-card.weight { background: linear-gradient(145deg, #2b1a10 0%, #4a2c15 100%); border: 1px solid #5a3c1f; }
+  .scheme-card.amount { background: linear-gradient(145deg, #5c0f28 0%, #8a1335 100%); border: 1px solid #a31e45; }
+  
+  .type-badge { display: inline-block; background: rgba(255,255,255,0.1); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.7rem; letter-spacing: 1px; font-weight: 600; margin-bottom: 1.5rem; color: var(--color-gold); }
+  .scheme-card h3 { color: #fff; font-size: 1.8rem; margin-bottom: 1rem; }
+  .subtitle { color: #ccc; font-size: 0.9rem; margin-bottom: 1.5rem; }
+  
+  .features-list { list-style: none; margin-bottom: 2rem; flex-grow: 1; }
+  .features-list li { margin-bottom: 0.8rem; font-size: 0.9rem; display: flex; align-items: flex-start; gap: 10px; color: #eee; }
+  
+  .card-footer { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem; font-size: 0.75rem; color: #aaa; }
+</style>

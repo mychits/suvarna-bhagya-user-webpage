@@ -1,0 +1,67 @@
+---
+const testimonials = [
+  { name: 'Priya Sharma', location: 'Bengaluru', text: 'The dashboard makes it so easy to track my monthly gold savings. I love that I can choose jewellery at the end.' },
+  { name: 'Rahul Verma', location: 'Mumbai', text: 'Transparent process and easy KYC. The reminders for installments are very helpful.' },
+  { name: 'Anjali Nair', location: 'Kochi', text: 'A great way to build a gold fund for my daughter. The staff at the branch were very helpful with redemption.' },
+];
+---
+
+<section class="testimonials-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Trusted by Our Customers</h2>
+    </div>
+    <div class="testimonials-grid">
+      {testimonials.map((t) => (
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p class="quote">"{t.text}"</p>
+          <div class="author">
+            <strong>{t.name}</strong>
+            <span>{t.location}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials-section {
+    padding: 6rem 0;
+    background-color: var(--color-charcoal);
+    color: var(--color-ivory);
+  }
+  .testimonials-section .section-header h2 {
+    color: var(--color-gold);
+  }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  .testimonial-card {
+    background: #222;
+    padding: 2rem;
+    border-radius: 8px;
+    border-left: 3px solid var(--color-gold);
+  }
+  .stars {
+    color: var(--color-gold);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .quote {
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    color: #ccc;
+  }
+  .author strong {
+    display: block;
+    color: var(--color-gold);
+  }
+  .author span {
+    font-size: 0.85rem;
+    color: var(--color-grey);
+  }
+</style>

@@ -1,0 +1,142 @@
+---
+// Using simple SVG paths as strings for the icons
+const features = [
+  { icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z', text: 'Flexible Monthly Savings' },
+  { icon: 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z', text: 'Two Scheme Options' },
+  { icon: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z', text: 'Transparent Process' },
+  { icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z', text: 'Secure Digital Records' },
+  { icon: 'M13 10V3L4 14h7v7l9-11h-7z', text: 'Easy UPI Payment' },
+  { icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', text: 'Trusted Since 1992' },
+  { icon: 'M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z', text: 'BIS Hallmarked Jewellery' },
+  { icon: 'M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z', text: 'Dedicated Customer Support' },
+  { icon: 'M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7', text: 'Exclusive Completion Benefits' },
+  { icon: 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z', text: 'Convenient Mobile App' },
+];
+---
+
+<section class="why-choose-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">— WHY CHOOSE US —</span>
+      <h2>Why Choose Suvarna Bhagya?</h2>
+    </div>
+    
+    <div class="features-grid">
+      {features.map((f) => (
+        <div class="feature-card">
+          <div class="icon-circle">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d={f.icon}></path></svg>
+          </div>
+          <h3>{f.text}</h3>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+ .why-choose-section { padding: 4rem 0; background: #f9f6f0; }
+
+/* Center heading */
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.section-header .eyebrow {
+  display: block;
+  color: var(--color-gold-dark);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.section-header h2 {
+  font-size: 2.2rem;
+  color: var(--color-burgundy);
+  margin: 0;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+/* Card with animation */
+.feature-card {
+  background: #fff;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+  transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+  border: 1px solid transparent;
+  cursor: default;
+  animation: fadeUp 0.6s ease both;
+}
+
+/* Staggered entrance animation */
+.feature-card:nth-child(1) { animation-delay: 0.05s; }
+.feature-card:nth-child(2) { animation-delay: 0.10s; }
+.feature-card:nth-child(3) { animation-delay: 0.15s; }
+.feature-card:nth-child(4) { animation-delay: 0.20s; }
+.feature-card:nth-child(5) { animation-delay: 0.25s; }
+.feature-card:nth-child(6) { animation-delay: 0.30s; }
+.feature-card:nth-child(7) { animation-delay: 0.35s; }
+.feature-card:nth-child(8) { animation-delay: 0.40s; }
+.feature-card:nth-child(9) { animation-delay: 0.45s; }
+.feature-card:nth-child(10) { animation-delay: 0.50s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Hover effect */
+.feature-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 14px 30px rgba(128, 0, 32, 0.15);
+  border-color: var(--color-gold);
+}
+
+.feature-card:hover .icon-circle {
+  background: var(--color-burgundy);
+  color: var(--color-gold);
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.icon-circle {
+  width: 45px; height: 45px;
+  background: #fdf2eb;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1rem;
+  color: var(--color-burgundy);
+  transition: all 0.35s ease;
+}
+.icon-circle .icon-svg { width: 20px; height: 20px; }
+
+.feature-card h3 {
+  font-size: 0.85rem;
+  color: var(--color-burgundy);
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 600;
+  transition: color 0.3s;
+}
+.feature-card:hover h3 { color: var(--color-gold-dark); }
+
+@media (max-width: 1024px) {
+  .features-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 768px) {
+  .features-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+  .feature-card { padding: 1rem 0.5rem; }
+  .section-header h2 { font-size: 1.8rem; }
+}
+@media (max-width: 480px) {
+  .features-grid { grid-template-columns: 1fr; }
+}
+</style>

@@ -1,0 +1,24 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { generateSEO } from '../utils/seo';
+const seo = generateSEO('Privacy Policy', 'Read our privacy policy to understand how we protect your data.');
+---
+
+<PageLayout title={seo.title} description={seo.description}>
+  <p>Last updated: November 2026</p>
+  
+  <h2>1. Information We Collect</h2>
+  <p>We collect personal information such as your name, mobile number, email address, and KYC documents (PAN, Aadhaar) when you register on our platform.</p>
+
+  <h2>2. How We Use Your Information</h2>
+  <p>Your information is used to process enrolments, verify your identity for KYC compliance, manage your savings account, and communicate important updates regarding your scheme.</p>
+
+  <h2>3. Data Security</h2>
+  <p>We implement industry-standard security measures, including encryption and secure S3-compatible document storage, to protect your personal and financial data from unauthorized access.</p>
+
+  <h2>4. Third-Party Sharing</h2>
+  <p>We do not sell your data. We may share necessary information with payment gateways (like Razorpay) and KYC verification partners strictly for processing your transactions and compliance.</p>
+
+  <h2>5. Your Rights</h2>
+  <p>You have the right to access, correct, or request deletion of your personal data, subject to legal and regulatory retention requirements.</p>
+</PageLayout>

@@ -1,0 +1,36 @@
+---
+import { faqs } from '../data/faq';
+---
+
+<section class="faqs-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Frequently Asked Questions</h2>
+      <p>Everything you need to know about the scheme.</p>
+    </div>
+    <div class="faq-list">
+      {faqs.map((faq) => (
+        <details class="faq-item">
+          <summary>{faq.q}</summary>
+          <div class="faq-answer">
+            <p>{faq.a}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Keep the styles from the previous step here */
+  .faqs-section { padding: 6rem 0; background-color: var(--color-ivory); }
+  .section-header { text-align: center; margin-bottom: 3rem; }
+  .section-header h2 { font-size: 2.5rem; }
+  .faq-list { max-width: 800px; margin: 0 auto; }
+  .faq-item { background: #fff; margin-bottom: 1rem; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); overflow: hidden; }
+  summary { padding: 1.5rem; font-weight: 600; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; color: var(--color-charcoal); }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: '+'; color: var(--color-gold); font-size: 1.5rem; font-weight: 400; }
+  details[open] summary::after { content: '-'; }
+  .faq-answer { padding: 0 1.5rem 1.5rem; color: #555; border-top: 1px solid #eee; padding-top: 1rem; }
+</style>

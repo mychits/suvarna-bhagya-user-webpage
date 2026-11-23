@@ -1,0 +1,89 @@
+---
+---
+
+<section class="cta-section">
+  <div class="container cta-content">
+    <h2 class="animate-heading">Ready to Start Your Gold Savings Journey?</h2>
+    <p class="animate-text">Join thousands of customers securing their future with Suvarna Bhagya.</p>
+    <a href="/plans" class="btn-primary animate-btn">View Plans Now</a>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    background: linear-gradient(135deg, var(--color-burgundy) 0%, #6a0d2a 100%);
+    color: var(--color-ivory);
+    padding: 5rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -50%; right: -10%;
+    width: 400px; height: 400px;
+    background: var(--color-gold);
+    opacity: 0.05;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+
+  .cta-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Scroll/Entrance Animations */
+  .animate-heading {
+    color: var(--color-gold);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    animation: fadeUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .animate-text {
+    margin-bottom: 2rem;
+    color: rgba(255,255,255,0.85);
+    font-size: 1.1rem;
+    animation: fadeUp 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .animate-btn {
+    background-color: var(--color-gold);
+    color: var(--color-burgundy);
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 6px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: fadeUp 0.8s ease-out 0.4s forwards;
+    opacity: 0;
+    transform: translateY(20px);
+    display: inline-block;
+  }
+  
+  .animate-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+  }
+
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

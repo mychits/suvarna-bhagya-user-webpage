@@ -1,0 +1,84 @@
+---
+const products = [
+  { name: 'Classic Gold Necklace', category: 'Necklaces', image: 'placeholder-necklace.jpg' },
+  { name: 'Traditional Bangle Set', category: 'Bangles', image: 'placeholder-bangles.jpg' },
+  { name: 'Diamond & Gold Ring', category: 'Rings', image: 'placeholder-ring.jpg' },
+  { name: 'Jhumka Earrings', category: 'Earrings', image: 'placeholder-earrings.jpg' },
+];
+---
+
+<section class="catalogue-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Explore Our Gold Catalogue</h2>
+      <p>Redeem your matured savings for exquisite, authentic Indian jewellery.</p>
+    </div>
+    <div class="catalogue-grid">
+      {products.map((product) => (
+        <div class="product-card">
+          <div class="product-image">
+             <!-- Replace with actual image -->
+            <span>{product.image}</span>
+          </div>
+          <div class="product-info">
+            <span class="category">{product.category}</span>
+            <h3>{product.name}</h3>
+            <a href="/catalogue" class="btn-secondary">View Details</a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .catalogue-section {
+    padding: 6rem 0;
+    background-color: #fff;
+  }
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .section-header h2 {
+    font-size: 2.5rem;
+  }
+  .catalogue-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  .product-card {
+    background: var(--color-ivory);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  }
+  .product-image {
+    height: 250px;
+    background-color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-grey);
+    font-size: 0.8rem;
+    border-bottom: 1px solid #ddd;
+  }
+  .product-info {
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .category {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-gold-dark);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .product-info h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+</style>

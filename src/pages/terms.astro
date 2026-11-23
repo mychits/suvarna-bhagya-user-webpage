@@ -1,0 +1,27 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { generateSEO } from '../utils/seo';
+const seo = generateSEO('Terms & Conditions', 'Review the terms and conditions for our gold savings schemes.');
+---
+
+<PageLayout title={seo.title} description={seo.description}>
+  <p>Last updated: November 2026</p>
+  
+  <h2>1. Scheme Overview</h2>
+  <p>These terms govern your participation in the Suvarna Bhagya gold savings scheme. Plan amounts, durations, and benefits are illustrative and subject to final approval and legal compliance.</p>
+
+  <h2>2. Eligibility and KYC</h2>
+  <p>Enrolment is subject to successful completion of KYC verification. You must be at least 18 years old and provide valid identity and address proof.</p>
+
+  <h2>3. Installments and Payments</h2>
+  <p>You agree to pay the scheduled monthly installments on time. Late payments may result in fees or affect your maturity benefits as per the specific scheme rules.</p>
+
+  <h2>4. Maturity and Redemption</h2>
+  <p>Redemption (cash or jewellery) is available only after the successful completion of the term and full payment of all installments. Redemption values are calculated based on approved scheme rules and are not guaranteed returns.</p>
+
+  <h2>5. Cancellation and Refunds</h2>
+  <p>If you choose to cancel your enrolment before maturity, refunds will be processed as per the cancellation policy, which may include deductions for administrative fees.</p>
+
+  <h2>6. Legal Compliance</h2>
+  <p>This scheme operates in compliance with applicable Indian laws. We do not promise guaranteed cash returns unless legally permitted under the final approved structure.</p>
+</PageLayout>

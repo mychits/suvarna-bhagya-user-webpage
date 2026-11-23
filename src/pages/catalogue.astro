@@ -1,0 +1,405 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { generateSEO } from '../utils/seo';
+
+const seo = generateSEO(
+  'Gold Jewellery Catalogue',
+  'Explore our beautiful collection of gold jewellery, including necklaces, bangles, earrings, rings and more.'
+);
+---
+
+<MainLayout title={seo.title} description={seo.description}>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="container header-content">
+      <span class="eyebrow">— OUR COLLECTION —</span>
+      <h1>Gold Jewellery Catalogue</h1>
+      <p>
+        Discover timeless elegance, beautiful craftsmanship and exquisite
+        gold jewellery collections designed for every special occasion.
+      </p>
+    </div>
+
+    <div class="header-decor header-decor-left"></div>
+    <div class="header-decor header-decor-right"></div>
+  </div>
+
+  <!-- CATALOGUE INTRODUCTION -->
+  <section class="catalogue-intro">
+    <div class="container">
+      <div class="intro-content">
+        <span class="section-label">ELEGANCE THAT LASTS FOREVER</span>
+
+        <h2>Explore Our Gold Collection</h2>
+
+        <p>
+          From traditional designs to contemporary styles, explore our
+          curated collection of gold jewellery. Discover beautiful designs
+          crafted to celebrate life's precious moments.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATALOGUE PLACEHOLDER -->
+  <section class="catalogue-section">
+    <div class="container">
+
+      <div class="catalogue-heading">
+        <div>
+          <span class="section-label">OUR COLLECTIONS</span>
+          <h2>Discover Our Jewellery</h2>
+        </div>
+      </div>
+
+      <div class="catalogue-placeholder">
+
+        <div class="placeholder-icon">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M6 3h12l3 6-9 12L3 9z"></path>
+            <path d="M3 9h18"></path>
+            <path d="m8 3 4 18"></path>
+            <path d="m16 3-4 18"></path>
+          </svg>
+        </div>
+
+        <h3>Our Jewellery Catalogue Is Coming Soon</h3>
+
+        <p>
+          We are preparing our exclusive gold jewellery collection.
+          Stay connected to explore our beautiful designs.
+        </p>
+
+        <a href="/contact" class="btn-primary">
+          Enquire About Our Collection
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT CTA -->
+  <section class="catalogue-cta">
+    <div class="container">
+      <div class="cta-card">
+
+        <span class="section-label">PERSONAL ASSISTANCE</span>
+
+        <h2>Looking for Something Special?</h2>
+
+        <p>
+          Our team is happy to help you explore our gold jewellery
+          collection and assist you with your enquiries.
+        </p>
+
+        <a href="/contact" class="btn-primary">
+          Contact Us
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+</MainLayout>
+
+<style>
+  /* ---------- PAGE HEADER ---------- */
+
+  .page-header {
+    background: linear-gradient(
+      135deg,
+      var(--color-burgundy) 0%,
+      #5a0a22 100%
+    );
+    color: var(--color-ivory);
+    padding: 6rem 0 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header-content {
+    position: relative;
+    z-index: 2;
+    animation: fadeUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .eyebrow {
+    display: block;
+    color: var(--color-gold);
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  .page-header h1 {
+    color: var(--color-gold);
+    font-size: 3.2rem;
+    line-height: 1.15;
+    margin: 0 0 1rem;
+    font-family: var(--font-heading);
+  }
+
+  .page-header p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.15rem;
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .header-decor {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--color-gold);
+    opacity: 0.06;
+    pointer-events: none;
+  }
+
+  .header-decor-left {
+    width: 350px;
+    height: 350px;
+    top: -100px;
+    left: -100px;
+  }
+
+  .header-decor-right {
+    width: 250px;
+    height: 250px;
+    bottom: -80px;
+    right: -80px;
+    animation: floatSlow 8s ease-in-out infinite;
+  }
+
+  /* ---------- INTRODUCTION ---------- */
+
+  .catalogue-intro {
+    padding: 5rem 0 3rem;
+    background: var(--color-ivory, #f9f6f0);
+    text-align: center;
+  }
+
+  .intro-content {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    display: block;
+    color: var(--color-gold);
+    font-size: 0.8rem;
+    letter-spacing: 2.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .intro-content h2,
+  .catalogue-heading h2 {
+    color: var(--color-burgundy);
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin: 0 0 1.2rem;
+  }
+
+  .intro-content p {
+    color: #666;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  /* ---------- CATALOGUE ---------- */
+
+  .catalogue-section {
+    padding: 3rem 0 6rem;
+    background: var(--color-ivory, #f9f6f0);
+  }
+
+  .catalogue-heading {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .catalogue-placeholder {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+    background: #fff;
+    border: 1px solid #eadfcd;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .catalogue-placeholder:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.07);
+  }
+
+  .placeholder-icon {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f8f0df;
+    color: var(--color-gold);
+  }
+
+  .placeholder-icon svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .catalogue-placeholder h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--color-burgundy);
+    margin-bottom: 1rem;
+  }
+
+  .catalogue-placeholder p {
+    max-width: 500px;
+    margin: 0 auto 2rem;
+    color: #666;
+    line-height: 1.8;
+  }
+
+  /* ---------- CTA ---------- */
+
+  .catalogue-cta {
+    padding: 5rem 0;
+    background: #fff;
+  }
+
+  .cta-card {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    border-radius: 20px;
+    text-align: center;
+    background: linear-gradient(
+      135deg,
+      var(--color-burgundy),
+      #5a0a22
+    );
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-card h2 {
+    font-family: var(--font-heading);
+    color: var(--color-gold);
+    font-size: 2.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .cta-card p {
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 550px;
+    margin: 0 auto 2rem;
+    line-height: 1.8;
+  }
+
+  /* ---------- ANIMATIONS ---------- */
+
+  @keyframes floatSlow {
+    0%, 100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+
+  @media (max-width: 768px) {
+    .page-header {
+      padding: 5rem 1rem 4rem;
+    }
+
+    .page-header h1 {
+      font-size: 2.4rem;
+    }
+
+    .page-header p {
+      font-size: 1rem;
+    }
+
+    .catalogue-intro {
+      padding: 4rem 1rem 2rem;
+    }
+
+    .intro-content h2,
+    .catalogue-heading h2 {
+      font-size: 2rem;
+    }
+
+    .catalogue-placeholder {
+      padding: 3.5rem 1.5rem;
+    }
+
+    .catalogue-placeholder h3 {
+      font-size: 1.5rem;
+    }
+
+    .catalogue-cta {
+      padding: 3.5rem 1rem;
+    }
+
+    .cta-card {
+      padding: 3rem 1.5rem;
+    }
+
+    .cta-card h2 {
+      font-size: 1.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .page-header h1 {
+      font-size: 1.9rem;
+    }
+
+    .intro-content h2 {
+      font-size: 1.7rem;
+    }
+
+    .catalogue-placeholder {
+      padding: 2.5rem 1.2rem;
+    }
+
+    .catalogue-placeholder h3 {
+      font-size: 1.3rem;
+    }
+
+    .cta-card h2 {
+      font-size: 1.6rem;
+    }
+  }
+</style>

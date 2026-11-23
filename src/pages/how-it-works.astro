@@ -1,0 +1,273 @@
+---
+import MainLayout from '../layouts/MainLayout.astro'; 
+import HowItWorks from '../components/HowItWorks.astro';
+---
+
+<MainLayout title="How It Works">
+  <!-- Enhanced Page Header -->
+  <div class="page-header">
+    <div class="container header-content">
+      <span class="eyebrow">— STEP BY STEP —</span>
+      <h1>Your Journey to Gold</h1>
+      <p>Step-by-step guide to enrolling, saving, and redeeming.</p>
+    </div>
+    <div class="header-decor header-decor-left"></div>
+    <div class="header-decor header-decor-right"></div>
+  </div>
+  
+  <HowItWorks />
+
+  <!-- Enhanced Detailed Workflow -->
+  <section class="workflow-section">
+    <div class="container">
+      <div class="terms-header">
+        <span class="eyebrow">— DETAILED WORKFLOW —</span>
+        <h2>From Enrolment to Redemption</h2>
+        <div class="gold-divider"></div>
+      </div>
+      
+      <div class="workflow-content">
+        <div class="workflow-step">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <h3>Enrolment & KYC</h3>
+            <p>Visit the website, select your scheme, register with mobile OTP, and complete your KYC (PAN, Aadhaar). Once validated by the admin, you become a scheme member.</p>
+          </div>
+        </div>
+        
+        <div class="workflow-step">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <h3>Scheduled Installments</h3>
+            <p>Make your monthly payments through integrated gateways (Razorpay/Cashfree). Receive instant digital receipts and ledger updates.</p>
+          </div>
+        </div>
+        
+        <div class="workflow-step">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <h3>Maturity & Redemption</h3>
+            <p>Upon maturity, choose between a cash withdrawal request (subject to legal approval) or a gold jewellery redemption from our catalogue.</p>
+          </div>
+        </div>
+        
+        <div class="workflow-step">
+          <div class="step-number">04</div>
+          <div class="step-content">
+            <h3>Admin Verification & Fulfilment</h3>
+            <p>The admin verifies your eligibility and payout details. For jewellery, the system calculates value, applicable charges, and records delivery or pickup.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  /* ---------- PAGE HEADER ---------- */
+  .page-header {
+    background: linear-gradient(135deg, var(--color-burgundy) 0%, #5a0a22 100%);
+    color: var(--color-ivory);
+    padding: 6rem 0 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header-content {
+    position: relative;
+    z-index: 2;
+    animation: fadeUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .eyebrow {
+    display: block;
+    color: var(--color-gold);
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  .page-header h1 {
+    color: var(--color-gold);
+    font-size: 3.2rem;
+    line-height: 1.15;
+    margin: 0 0 1rem;
+    font-family: var(--font-heading);
+  }
+
+  .page-header p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.15rem;
+    max-width: 550px;
+    margin: 0 auto;
+  }
+
+  /* Decorative circles */
+  .header-decor {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--color-gold);
+    opacity: 0.06;
+    pointer-events: none;
+  }
+  .header-decor-left {
+    width: 350px; height: 350px;
+    top: -100px; left: -100px;
+  }
+  .header-decor-right {
+    width: 250px; height: 250px;
+    bottom: -80px; right: -80px;
+    animation: floatSlow 8s ease-in-out infinite;
+  }
+
+  @keyframes floatSlow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+
+  /* ---------- WORKFLOW SECTION ---------- */
+  .workflow-section {
+    padding: 6rem 0;
+    background: var(--color-ivory, #f9f6f0);
+  }
+
+  .terms-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 4rem;
+  }
+
+  .terms-header .eyebrow {
+    color: var(--color-gold-dark, #8c6825);
+  }
+
+  .terms-header h2 {
+    color: var(--color-burgundy);
+    font-size: 2.5rem;
+    margin: 0.4rem 0 1rem;
+  }
+
+  .gold-divider {
+    width: 70px;
+    height: 2px;
+    background: var(--color-gold);
+    margin: 0 auto;
+  }
+
+  .workflow-content {
+    max-width: 850px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* Vertical timeline line */
+  .workflow-content::before {
+    content: '';
+    position: absolute;
+    top: 20px; bottom: 20px;
+    left: 24px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--color-gold) 0%, #f0e6d2 100%);
+    z-index: 0;
+  }
+
+  .workflow-step {
+    display: flex;
+    gap: 1.8rem;
+    margin-bottom: 2.5rem;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .workflow-step:nth-child(1) { animation-delay: 0.1s; }
+  .workflow-step:nth-child(2) { animation-delay: 0.2s; }
+  .workflow-step:nth-child(3) { animation-delay: 0.3s; }
+  .workflow-step:nth-child(4) { animation-delay: 0.4s; }
+
+  .step-number {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--color-gold);
+    color: var(--color-burgundy);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.35s ease;
+  }
+
+  .workflow-step:hover .step-number {
+    background: var(--color-burgundy);
+    color: var(--color-gold);
+    border-color: var(--color-burgundy);
+    transform: scale(1.1);
+  }
+
+  .step-content {
+    background: #fff;
+    padding: 1.8rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    border: 1px solid transparent;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    flex-grow: 1;
+  }
+
+  .workflow-step:hover .step-content {
+    transform: translateX(6px);
+    border-color: var(--color-gold);
+    box-shadow: 0 10px 25px rgba(128, 0, 32, 0.08);
+  }
+
+  .step-content h3 {
+    margin: 0 0 0.6rem;
+    color: var(--color-burgundy);
+    font-size: 1.2rem;
+    font-family: var(--font-body);
+  }
+
+  .step-content p {
+    margin: 0;
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* ---------- GLOBAL ANIMATION KEYFRAME ---------- */
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 768px) {
+    .page-header h1 { font-size: 2.2rem; }
+    .terms-header h2 { font-size: 2rem; }
+    .workflow-section { padding: 4rem 0; }
+    
+    .workflow-content::before { left: 20px; }
+    .step-number { width: 42px; height: 42px; font-size: 0.95rem; }
+    .step-content { padding: 1.5rem; }
+  }
+
+  @media (max-width: 480px) {
+    .page-header { padding: 4.5rem 0 4rem; }
+    .page-header h1 { font-size: 1.8rem; }
+    .workflow-step { gap: 1rem; }
+    .workflow-content::before { display: none; } /* Hide line on very small screens */
+  }
+</style>
