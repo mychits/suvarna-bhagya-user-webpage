@@ -2,77 +2,213 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import Plans from '../components/Plans.astro';
 import Faqs from '../components/Faqs.astro';
+import { generateSEO } from '../utils/seo';
+
+const seo = generateSEO(
+  'Gold Savings Plans',
+  'Explore Suvarna Bhagya Gold Saving Chit Scheme and Fixed Gold Saving Chit Scheme. Choose your monthly savings plan and jewellery purchase benefits.'
+);
 ---
 
-<MainLayout title="Our Plans">
-  <!-- Enhanced Page Header -->
-  <div class="page-header">
+<MainLayout title={seo.title} description={seo.description}>
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
     <div class="container header-content">
-      <span class="eyebrow">— SAVINGS PLANS —</span>
-      <h1>Compare Our Savings Plans</h1>
-      <p>Find the perfect plan to start your gold savings journey.</p>
+
+      <span class="eyebrow">
+        — GOLD SAVINGS SCHEMES —
+      </span>
+
+      <h1>Choose Your Gold Savings Plan</h1>
+
+      <p>
+        Start your gold savings journey with flexible monthly installments
+        and jewellery purchase benefits.
+      </p>
+
     </div>
+
     <div class="header-decor header-decor-left"></div>
     <div class="header-decor header-decor-right"></div>
-  </div>
-  
+  </section>
+
+
+  <!-- SAVINGS PLANS -->
   <Plans />
-  
-  <!-- Enhanced Terms & Conditions Section -->
+
+
+  <!-- TERMS & CONDITIONS -->
   <section class="terms-section">
     <div class="container">
+
       <div class="terms-header">
-        <span class="eyebrow">— IMPORTANT —</span>
+
+        <span class="eyebrow">
+          — IMPORTANT INFORMATION —
+        </span>
+
         <h2>Scheme Terms & Conditions</h2>
+
         <div class="gold-divider"></div>
+
+        <p class="terms-intro">
+          Please review the scheme details and applicable terms
+          before enrolling in a savings plan.
+        </p>
+
       </div>
-      <p class="terms-intro">Please review the following terms carefully before enrolling:</p>
-      
+
       <div class="terms-grid">
+
         <div class="term-item">
           <div class="term-icon">01</div>
+
           <div class="term-text">
-            <h3>Plan Illustrations</h3>
-            <p>Plan amounts, duration, and bonuses are illustrative and subject to final approval.</p>
+            <h3>Scheme Duration</h3>
+
+            <p>
+              Gold Saving Chit Scheme and Fixed Gold Saving Chit Scheme
+              have different durations. Please review the duration
+              applicable to your selected plan.
+            </p>
           </div>
         </div>
+
         <div class="term-item">
           <div class="term-icon">02</div>
+
           <div class="term-text">
-            <h3>Redemption Eligibility</h3>
-            <p>Eligibility for redemption (cash or jewellery) is subject to successful completion of all installments.</p>
+            <h3>Monthly Installments</h3>
+
+            <p>
+              Members are required to pay their monthly installments
+              according to the selected savings plan.
+            </p>
           </div>
         </div>
+
         <div class="term-item">
           <div class="term-icon">03</div>
+
           <div class="term-text">
-            <h3>Payment Policy</h3>
-            <p>Missed payments may result in late fees or cancellation as per policy.</p>
+            <h3>Dividend & Bonus</h3>
+
+            <p>
+              Dividend and bonus details displayed on the website
+              are based on the scheme information and applicable
+              scheme terms.
+            </p>
           </div>
         </div>
+
         <div class="term-item">
           <div class="term-icon">04</div>
+
           <div class="term-text">
-            <h3>KYC Requirement</h3>
-            <p>KYC verification is mandatory for all enrolments.</p>
+            <h3>Jewellery Benefits</h3>
+
+            <p>
+              Jewellery purchase benefits, making charge discounts,
+              wastage benefits and gifts are subject to the
+              applicable scheme conditions.
+            </p>
           </div>
         </div>
+
+        <div class="term-item">
+          <div class="term-icon">05</div>
+
+          <div class="term-text">
+            <h3>Membership</h3>
+
+            <p>
+              Membership enrolment and participation are subject
+              to company policies and verification requirements.
+            </p>
+          </div>
+        </div>
+
+        <div class="term-item">
+          <div class="term-icon">06</div>
+
+          <div class="term-text">
+            <h3>Scheme Confirmation</h3>
+
+            <p>
+              Please contact our team to confirm the current
+              availability, terms and eligibility of your
+              preferred savings plan.
+            </p>
+          </div>
+        </div>
+
       </div>
+
     </div>
   </section>
-  
+
+
+  <!-- FAQ -->
   <Faqs />
+
+
+  <!-- CONTACT CTA -->
+  <section class="support-cta">
+    <div class="container">
+
+      <div class="support-card">
+
+        <div class="support-icon">
+          <svg viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+
+            <path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H5l-2-2v-6.5A8.5 8.5 0 0 1 11.5 3h1A8.5 8.5 0 0 1 21 11.5Z"/>
+            <path d="M8 10h8"/>
+            <path d="M8 14h5"/>
+          </svg>
+        </div>
+
+        <h2>Need Help Choosing a Plan?</h2>
+
+        <p>
+          Our team is here to help you understand our gold savings
+          schemes and select a plan that suits your jewellery goals.
+        </p>
+
+        <a href="/contact" class="support-btn">
+          Contact Our Team
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
 </MainLayout>
 
+
 <style>
-  /* ---------- PAGE HEADER ---------- */
+  /* PAGE HEADER */
+
   .page-header {
-    background: linear-gradient(135deg, var(--color-burgundy) 0%, #5a0a22 100%);
-    color: var(--color-ivory);
-    padding: 6rem 0 5rem;
+    background: linear-gradient(
+      135deg,
+      var(--color-burgundy, #780d2e) 0%,
+      #50091f 100%
+    );
+
+    color: var(--color-ivory, #faf8f5);
+    padding: 90px 0 80px;
     text-align: center;
     position: relative;
     overflow: hidden;
+  }
+
+  .container {
+    width: min(1200px, 92%);
+    margin: 0 auto;
   }
 
   .header-content {
@@ -85,158 +221,219 @@ import Faqs from '../components/Faqs.astro';
 
   .eyebrow {
     display: block;
-    color: var(--color-gold);
-    font-size: 0.85rem;
+    color: var(--color-gold, #d5ad32);
+    font-size: 12px;
     letter-spacing: 3px;
-    font-weight: 600;
-    margin-bottom: 1rem;
+    font-weight: 700;
+    margin-bottom: 16px;
     text-transform: uppercase;
   }
 
   .page-header h1 {
-    color: var(--color-gold);
-    font-size: 3.2rem;
+    color: var(--color-gold, #d5ad32);
+    font-size: clamp(32px, 5vw, 54px);
     line-height: 1.15;
-    margin: 0 0 1rem;
+    margin: 0 0 18px;
     font-family: var(--font-heading);
   }
 
   .page-header p {
     color: rgba(255, 255, 255, 0.85);
-    font-size: 1.15rem;
-    max-width: 550px;
+    font-size: 17px;
+    line-height: 1.7;
+    max-width: 650px;
     margin: 0 auto;
   }
 
-  /* Decorative circles */
   .header-decor {
     position: absolute;
     border-radius: 50%;
-    background: var(--color-gold);
+    background: var(--color-gold, #d5ad32);
     opacity: 0.06;
     pointer-events: none;
   }
+
   .header-decor-left {
-    width: 350px; height: 350px;
-    top: -100px; left: -100px;
+    width: 350px;
+    height: 350px;
+    top: -100px;
+    left: -100px;
   }
+
   .header-decor-right {
-    width: 250px; height: 250px;
-    bottom: -80px; right: -80px;
-    animation: floatSlow 8s ease-in-out infinite;
+    width: 250px;
+    height: 250px;
+    bottom: -80px;
+    right: -80px;
   }
 
-  @keyframes floatSlow {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-  }
 
-  /* ---------- TERMS SECTION ---------- */
+  /* TERMS */
+
   .terms-section {
-    padding: 6rem 0;
-    background: var(--color-ivory, #f9f6f0);
+    padding: 75px 0;
+    background: var(--color-ivory, #faf8f5);
   }
 
   .terms-header {
     text-align: center;
-    max-width: 700px;
-    margin: 0 auto 1.5rem;
-  }
-
-  .terms-header .eyebrow {
-    color: var(--color-gold-dark, #8c6825);
+    max-width: 750px;
+    margin: 0 auto 40px;
   }
 
   .terms-header h2 {
-    color: var(--color-burgundy);
-    font-size: 2.5rem;
-    margin: 0.4rem 0 1rem;
+    color: var(--color-burgundy, #780d2e);
+    font-family: var(--font-heading);
+    font-size: clamp(27px, 4vw, 38px);
+    margin: 10px 0 18px;
   }
 
   .gold-divider {
-    width: 70px;
-    height: 2px;
-    background: var(--color-gold);
-    margin: 0 auto;
+    width: 65px;
+    height: 3px;
+    background: var(--color-gold, #d5ad32);
+    margin: 0 auto 20px;
+    border-radius: 5px;
   }
 
   .terms-intro {
-    text-align: center;
-    color: #555;
-    max-width: 600px;
-    margin: 0 auto 3rem;
-    font-size: 1.05rem;
+    color: #666;
+    font-size: 15px;
+    line-height: 1.7;
   }
 
   .terms-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    max-width: 900px;
-    margin: 0 auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
   }
 
   .term-item {
     background: #fff;
+    border: 1px solid #eee6dc;
     border-radius: 12px;
-    padding: 2rem;
+    padding: 25px;
     display: flex;
-    gap: 1.2rem;
+    gap: 18px;
     align-items: flex-start;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
-    border: 1px solid transparent;
-    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
-    animation: fadeUp 0.6s ease both;
+    transition: all 0.3s ease;
   }
 
-  .term-item:nth-child(1) { animation-delay: 0.05s; }
-  .term-item:nth-child(2) { animation-delay: 0.15s; }
-  .term-item:nth-child(3) { animation-delay: 0.25s; }
-  .term-item:nth-child(4) { animation-delay: 0.35s; }
-
   .term-item:hover {
-    transform: translateY(-6px);
-    border-color: var(--color-gold);
-    box-shadow: 0 14px 30px rgba(128, 0, 32, 0.1);
+    transform: translateY(-4px);
+    border-color: var(--color-gold, #d5ad32);
+    box-shadow: 0 10px 25px rgba(90, 10, 35, 0.06);
   }
 
   .term-icon {
     flex-shrink: 0;
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    background: #fdf2eb;
-    color: var(--color-burgundy);
+    width: 43px;
+    height: 43px;
+    border-radius: 10px;
+    background: #faf3e5;
+    color: var(--color-burgundy, #780d2e);
     font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.35s ease;
-  }
-
-  .term-item:hover .term-icon {
-    background: var(--color-burgundy);
-    color: var(--color-gold);
-    transform: scale(1.1);
   }
 
   .term-text h3 {
-    margin: 0 0 0.4rem;
-    font-size: 1.05rem;
-    color: var(--color-charcoal);
-    font-family: var(--font-body);
+    margin: 0 0 8px;
+    font-size: 16px;
+    color: #292323;
   }
 
   .term-text p {
     margin: 0;
-    color: #666;
-    font-size: 0.92rem;
-    line-height: 1.5;
+    color: #686868;
+    font-size: 13px;
+    line-height: 1.7;
   }
 
-  /* ---------- GLOBAL ANIMATION KEYFRAME ---------- */
+
+  /* CONTACT CTA */
+
+  .support-cta {
+    padding: 75px 0;
+    background: #fff;
+  }
+
+  .support-card {
+    background: #fff;
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 45px 30px;
+    border-radius: 18px;
+    text-align: center;
+    border: 1px solid #eee4d6;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .support-icon {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: #fdf2eb;
+    color: var(--color-burgundy, #780d2e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    transition: all 0.3s ease;
+  }
+
+  .support-icon svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .support-card:hover .support-icon {
+    background: var(--color-burgundy, #780d2e);
+    color: var(--color-gold, #d5ad32);
+    transform: scale(1.05);
+  }
+
+  .support-card h2 {
+    color: var(--color-burgundy, #780d2e);
+    font-size: 28px;
+    margin: 0 0 12px;
+    font-family: var(--font-heading);
+  }
+
+  .support-card p {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0 auto 25px;
+  }
+
+  .support-btn {
+    background: var(--color-burgundy, #780d2e);
+    color: #fff;
+    padding: 13px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-block;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .support-btn:hover {
+    background: var(--color-gold, #d5ad32);
+    color: var(--color-burgundy, #780d2e);
+    transform: translateY(-2px);
+  }
+
+
+  /* ANIMATION */
+
   @keyframes fadeUp {
     to {
       opacity: 1;
@@ -244,17 +441,58 @@ import Faqs from '../components/Faqs.astro';
     }
   }
 
-  /* ---------- RESPONSIVE ---------- */
+
+  /* TABLET */
+
   @media (max-width: 768px) {
-    .page-header h1 { font-size: 2.2rem; }
-    .terms-grid { grid-template-columns: 1fr; }
-    .terms-header h2 { font-size: 2rem; }
-    .terms-section { padding: 4rem 0; }
+    .page-header {
+      padding: 65px 0;
+    }
+
+    .terms-section {
+      padding: 55px 0;
+    }
+
+    .terms-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .support-cta {
+      padding: 55px 0;
+    }
   }
 
+
+  /* MOBILE */
+
   @media (max-width: 480px) {
-    .page-header { padding: 4.5rem 0 4rem; }
-    .page-header h1 { font-size: 1.8rem; }
-    .term-item { padding: 1.5rem; }
+    .page-header {
+      padding: 55px 0 50px;
+    }
+
+    .page-header h1 {
+      font-size: 30px;
+    }
+
+    .page-header p {
+      font-size: 14px;
+    }
+
+    .terms-header h2 {
+      font-size: 27px;
+    }
+
+    .term-item {
+      padding: 20px;
+      gap: 13px;
+    }
+
+    .support-card {
+      padding: 35px 20px;
+    }
+
+    .support-card h2 {
+      font-size: 24px;
+    }
   }
 </style>

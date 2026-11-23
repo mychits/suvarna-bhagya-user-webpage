@@ -5,9 +5,13 @@
   <div class="container about-inner">
     <div class="about-image">
       <!-- Replace with your actual golden pot image -->
-      <div class="image-placeholder">
-        <p>Golden Pot Image Here</p>
-      </div>
+    <div class="image-placeholder">
+  <img
+    src="/images/Smart.avif"
+    alt="Suvarna Bhagya Gold Savings Scheme"
+    loading="lazy"
+  />
+</div>
       <div class="trust-badge">
         <strong>30+</strong>
         <span>YEARS OF TRUST</span>
@@ -39,12 +43,20 @@
   
   .about-image { position: relative; }
   .image-placeholder {
-    width: 100%; height: 450px;
-    background: #f2e3d5;
-    border-radius: 20px;
-    display: flex; align-items: center; justify-content: center;
-    color: #b08d36;
-  }
+  width: 100%;
+  height: 550px;
+  background: #f2e3d5;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.image-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 20px;
+}
   .trust-badge {
     position: absolute;
     bottom: -20px; right: -20px;

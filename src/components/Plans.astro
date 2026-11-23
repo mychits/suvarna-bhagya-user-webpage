@@ -1,42 +1,617 @@
 ---
-import { plans } from '../data/plans';
+import { plans } from "../data/plans.js";
+
+// Indian format with ₹ symbol  ->  ₹15,000 | ₹1,00,000
+const formatCurrency = (amount: number) =>
+  new Intl.NumberFormat("en-IN", {
+    style: "currency",
+    currency: "INR",
+    maximumFractionDigits: 0,
+  }).format(amount);
+
+const categories = [plans.goldSaving, plans.fixedGold];
+
+const planBenefits = [
+  "Free Gift at the Time of Joining",
+  "Monthly Dividend",
+  "Bonus on Installment Paid",
+  "50% Discount on Making Charges",
+];
 ---
 
 <section class="plans-section">
   <div class="container">
-    <div class="section-header">
-      <h2>Choose Your Savings Plan</h2>
-      <p>Select a plan that fits your financial goals. Illustrative figures only.</p>
-    </div>
-    <div class="plans-grid">
-      {plans.map((plan) => (
-        <div class="plan-card">
-          <h3>{plan.name}</h3>
-          <div class="price">{plan.monthly}<span>/month</span></div>
-          <ul class="plan-features">
-            <li><strong>Term:</strong> {plan.term}</li>
-            <li><strong>Total:</strong> {plan.total}</li>
-            {plan.features.map(feature => <li>{feature}</li>)}
-          </ul>
-          <a href="/register" class="btn-primary plan-btn">Select Plan</a>
+
+    {categories.map((category, categoryIndex) => (
+      <div class={`scheme-category ${categoryIndex === 1 ? "second-category" : ""}`}>
+
+        <!-- CATEGORY HEADER -->
+        <div class="category-header">
+          <span class="category-eyebrow">
+            {categoryIndex === 0 ? "GOLD SAVINGS" : "FIXED GOLD SAVINGS"}
+          </span>
+          <h2>{category.title}</h2>
+          <p>{category.subtitle}</p>
+
+          <div class="duration-badge">
+            <svg viewBox="0 0 24 24">
+              <rect x="3" y="4" width="18" height="17" rx="2" />
+              <path d="M16 2v4M8 2v4M3 10h18" />
+            </svg>
+            {category.duration} Months
+          </div>
         </div>
-      ))}
+
+        <!-- PLAN CARDS -->
+        <div class="plans-grid">
+          {category.plans.map((plan) => (
+            <article class="plan-card">
+
+              <!-- Burgundy header bar -->
+              <div class="card-header">
+                <span class="plan-number">{plan.name}</span>
+                <span class="duration">{category.duration} Months</span>
+              </div>
+
+              <div class="card-body">
+
+                <!-- Chit Value -->
+                <div class="chit-value">
+                  <span class="value-label">CHIT VALUE</span>
+                  <h3 class="money">{formatCurrency(plan.chitValue)}</h3>
+                </div>
+
+                <!-- Monthly Installment -->
+                <div class="monthly-box">
+                  <span class="monthly-label">MONTHLY INSTALLMENT</span>
+                  <strong class="money">{formatCurrency(plan.monthly)}</strong>
+                </div>
+
+                <!-- Details -->
+                <div class="details-list">
+                  <div class="detail-item">
+                    <svg viewBox="0 0 24 24">
+                      <circle cx="12" cy="8" r="4" />
+                      <path d="M4 21v-1a8 8 0 0 1 16 0v1" />
+                    </svg>
+                    <span>Total Members</span>
+                    <strong>{plan.members}</strong>
+                  </div>
+
+                  <div class="detail-item">
+                    <svg viewBox="0 0 24 24">
+                      <rect x="3" y="5" width="18" height="14" rx="2" />
+                      <path d="M3 10h18" />
+                    </svg>
+                    <span>Total Amount Paid</span>
+                    <strong>{formatCurrency(plan.totalPaid)}</strong>
+                  </div>
+
+                  <div class="detail-item">
+                    <svg viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="9" />
+                      <path d="M12 7v10" />
+                      <path d="M15 9H9a2 2 0 0 0 0 4h6a2 2 0 0 1 0 4H8" />
+                    </svg>
+                    <span>Dividend</span>
+                    <strong>{formatCurrency(plan.dividend)}</strong>
+                  </div>
+
+                  <div class="detail-item">
+                    <svg viewBox="0 0 24 24">
+                      <path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z" />
+                    </svg>
+                    <span>Bonus</span>
+                    <strong>{formatCurrency(plan.bonus)}</strong>
+                  </div>
+                </div>
+
+                <!-- Plan Benefits -->
+                <div class="benefits">
+                  <div class="benefit-heading">Plan Benefits</div>
+                  <ul class="benefit-list">
+                    {planBenefits.map((benefit) => (
+                      <li>
+                        <svg viewBox="0 0 24 24">
+                          <path d="m5 12 4 4L19 6" />
+                        </svg>
+                        {benefit}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <!-- CTA -->
+                <a
+                  href={`/contact?plan=${encodeURIComponent(plan.id)}`}
+                  class="plan-button"
+                >
+                  Enquire About This Plan
+                  <svg viewBox="0 0 24 24">
+                    <path d="M5 12h14" />
+                    <path d="m13 6 6 6-6 6" />
+                  </svg>
+                </a>
+
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    ))}
+
+    <!-- COMMON BENEFITS -->
+    <div class="scheme-benefits">
+      <div class="benefits-title">
+        <span class="category-eyebrow">MEMBER BENEFITS</span>
+        <h2>Enjoy More Benefits With Suvarna Bhagya</h2>
+      </div>
+
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M20 12v10H4V12" />
+              <path d="M2 7h20v5H2z" />
+              <path d="M12 22V7" />
+              <path d="M12 7H7.5a2.5 2.5 0 1 1 2.5-2.5C10 6 12 7 12 7z" />
+              <path d="M12 7h4.5a2.5 2.5 0 1 0-2.5-2.5C14 6 12 7 12 7z" />
+            </svg>
+          </div>
+          <h3>Joining Gift</h3>
+          <p>Free gift at the time of joining.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 7v10" />
+              <path d="M15 9H9a2 2 0 0 0 0 4h6a2 2 0 0 1 0 4H8" />
+            </svg>
+          </div>
+          <h3>Monthly Dividend</h3>
+          <p>Monthly dividend benefits as applicable.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z" />
+            </svg>
+          </div>
+          <h3>Bonus Benefits</h3>
+          <p>Bonus on installments paid.</p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M3 7h18" />
+              <path d="M5 7v13h14V7" />
+              <path d="M8 11h8" />
+              <path d="M8 15h5" />
+              <circle cx="12" cy="4" r="2" />
+            </svg>
+          </div>
+          <h3>Jewellery Benefits</h3>
+          <p>50% discount on making charges and 0% wastage as per scheme conditions.</p>
+        </div>
+      </div>
     </div>
+
   </div>
 </section>
 
 <style>
-  /* Keep the styles from the previous step here */
-  .plans-section { padding: 6rem 0; background-color: var(--color-ivory); }
-  .section-header { text-align: center; margin-bottom: 4rem; }
-  .section-header h2 { font-size: 2.5rem; color: var(--color-charcoal); }
-  .plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
-  .plan-card { background: #fff; padding: 2.5rem 2rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; border-top: 4px solid var(--color-gold); transition: transform 0.3s ease; }
-  .plan-card:hover { transform: translateY(-5px); }
-  .plan-card h3 { font-size: 1.5rem; color: var(--color-charcoal); margin-bottom: 1rem; }
-  .price { font-size: 2.5rem; font-weight: 700; color: var(--color-gold-dark); margin-bottom: 2rem; }
-  .price span { font-size: 1rem; color: var(--color-grey); font-weight: 400; }
-  .plan-features { list-style: none; margin-bottom: 2rem; text-align: left; }
-  .plan-features li { padding: 0.5rem 0; border-bottom: 1px solid #eee; color: #555; }
-  .plan-btn { width: 100%; }
+  /* MAIN */
+  .plans-section {
+    padding: 70px 0;
+    background: var(--color-ivory, #faf8f5);
+  }
+
+  .container {
+    width: min(1200px, 92%);
+    margin: auto;
+  }
+
+  /* CATEGORY */
+  .category-header {
+    text-align: center;
+    margin-bottom: 38px;
+  }
+
+  .category-eyebrow {
+    color: #b18a2b;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .category-header h2 {
+    color: var(--color-burgundy, #780d2e);
+    font-family: var(--font-heading);
+    font-size: clamp(28px, 3.5vw, 42px);
+    margin: 0 0 12px;
+  }
+
+  .category-header p {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .duration-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 10px 22px;
+    background: var(--color-burgundy, #780d2e);
+    color: var(--color-gold, #d5ad32);
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .duration-badge svg {
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+  }
+
+  .second-category {
+    margin-top: 75px;
+  }
+
+  /* GRID */
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  /* CARD */
+  .plan-card {
+    background: #fff;
+    border: 1px solid #eadfcf;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 6px 22px rgba(60, 10, 25, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-width: 0;
+  }
+
+  .plan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 32px rgba(80, 10, 30, 0.12);
+  }
+
+  /* HEADER BAR */
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-burgundy, #780d2e);
+    padding: 13px 18px;
+  }
+
+  .plan-number {
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+  }
+
+  .duration {
+    background: #f7f0e0;
+    color: var(--color-burgundy, #780d2e);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* BODY */
+  .card-body {
+    padding: 20px 20px 22px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  /* MONEY VALUES (chit value + monthly installment)
+     Lining numerals so 1 looks like 1, and a font that has the ₹ glyph */
+  .money {
+    font-family: "Playfair Display", var(--font-heading), Georgia, serif;
+    font-weight: 700;
+    color: #3d0a1b;
+    font-variant-numeric: lining-nums tabular-nums;
+    font-feature-settings: "lnum" 1, "tnum" 1;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+  }
+
+  /* CHIT VALUE */
+  .chit-value {
+    text-align: center;
+    padding: 4px 0 16px;
+  }
+
+  .value-label {
+    display: block;
+    color: #8a7a5e;
+    font-size: 10px;
+    letter-spacing: 1.8px;
+    font-weight: 600;
+  }
+
+  .chit-value h3 {
+    font-size: clamp(26px, 2.6vw, 32px);
+    margin: 8px 0 0;
+  }
+
+  /* MONTHLY INSTALLMENT */
+  .monthly-box {
+    background: #faf1df;
+    border-radius: 8px;
+    padding: 16px 12px;
+    text-align: center;
+    margin-bottom: 18px;
+  }
+
+  .monthly-label {
+    display: block;
+    color: #6b5b45;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+  }
+
+  .monthly-box strong {
+    display: block;
+    margin-top: 6px;
+    font-size: 26px;
+  }
+
+  /* DETAILS */
+  .details-list {
+    margin-bottom: 18px;
+  }
+
+  .detail-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0ebe3;
+  }
+
+  .detail-item svg {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+    fill: none;
+    stroke: #b18a2b;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .detail-item > span {
+    flex: 1;
+    min-width: 0;
+    color: #666;
+    font-size: 12px;
+  }
+
+  .detail-item strong {
+    color: #222;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  /* PLAN BENEFITS */
+  .benefits {
+    margin-top: auto;
+    margin-bottom: 20px;
+  }
+
+  .benefit-heading {
+    color: var(--color-burgundy, #780d2e);
+    font-weight: 700;
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .benefit-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .benefit-list li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #555;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  .benefit-list svg {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+    fill: none;
+    stroke: #4a8c5c;
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* BUTTON */
+  .plan-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-burgundy, #780d2e);
+    color: #fff;
+    padding: 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .plan-button svg {
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.3s ease;
+  }
+
+  .plan-button:hover {
+    background: var(--color-gold, #d5ad32);
+    color: var(--color-burgundy, #780d2e);
+  }
+
+  .plan-button:hover svg {
+    transform: translateX(4px);
+  }
+
+  /* COMMON BENEFITS */
+  .scheme-benefits {
+    margin-top: 80px;
+  }
+
+  .benefits-title {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .benefits-title h2 {
+    color: var(--color-burgundy, #780d2e);
+    font-family: var(--font-heading);
+    font-size: clamp(25px, 3vw, 36px);
+    margin: 10px 0;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .benefit-card {
+    background: #fff;
+    border: 1px solid #eee5d8;
+    border-radius: 11px;
+    padding: 23px 18px;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .benefit-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .benefit-icon {
+    width: 45px;
+    height: 45px;
+    margin: 0 auto 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #faf3e5;
+  }
+
+  .benefit-icon svg {
+    width: 23px;
+    height: 23px;
+    fill: none;
+    stroke: #a9862d;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .benefit-card h3 {
+    color: #4b2430;
+    font-size: 14px;
+    margin: 0 0 8px;
+  }
+
+  .benefit-card p {
+    color: #777;
+    font-size: 12px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* TABLET */
+  @media (max-width: 950px) {
+    .plans-grid,
+    .benefits-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    .plans-section {
+      padding: 45px 0;
+    }
+
+    .plans-grid {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .category-header {
+      margin-bottom: 28px;
+    }
+
+    .category-header h2 {
+      font-size: 27px;
+    }
+
+    .second-category {
+      margin-top: 55px;
+    }
+
+    .scheme-benefits {
+      margin-top: 55px;
+    }
+
+    .benefits-grid {
+      grid-template-columns: 1fr;
+      gap: 13px;
+    }
+
+    .benefit-card {
+      padding: 20px;
+    }
+  }
 </style>

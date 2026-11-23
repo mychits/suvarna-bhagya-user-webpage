@@ -1,34 +1,95 @@
-export const plans = [
-  { 
-    id: 'starter',
-    name: 'Starter', 
-    monthly: '₹1,000', 
-    term: '11 months', 
-    total: '₹11,000',
-    features: ['Eligible for Cash Redemption', 'Eligible for Jewellery Redemption', 'Digital Passbook']
+export const plans = {
+  goldSaving: {
+    title: "Gold Saving Chit Scheme",
+    subtitle: "12-month jewellery savings scheme",
+    duration: 12,
+    plans: [
+      {
+        id: "gold-15000",
+        name: "Plan 01",
+        chitValue: 15000,
+        monthly: 1000,
+        members: 15,
+        totalPaid: 12000,
+        dividend: 2000,
+        bonus: 1000,
+      },
+      {
+        id: "gold-30000",
+        name: "Plan 02",
+        chitValue: 30000,
+        monthly: 2000,
+        members: 15,
+        totalPaid: 24000,
+        dividend: 4000,
+        bonus: 2000,
+      },
+      {
+        id: "gold-45000",
+        name: "Plan 03",
+        chitValue: 45000,
+        monthly: 3000,
+        members: 15,
+        totalPaid: 36000,
+        dividend: 6000,
+        bonus: 3000,
+      },
+    ],
   },
-  { 
-    id: 'silver',
-    name: 'Silver', 
-    monthly: '₹2,000', 
-    term: '11 months', 
-    total: '₹22,000',
-    features: ['Eligible for Cash Redemption', 'Eligible for Jewellery Redemption', 'Digital Passbook', 'Priority Support']
+
+  fixedGold: {
+    title: "Fixed Gold Saving Chit Scheme",
+    subtitle: "14-month fixed gold savings scheme",
+    duration: 14,
+    plans: [
+      {
+        id: "fixed-50000",
+        name: "Plan 01",
+        chitValue: 50000,
+        monthly: 3000,
+        members: 50,
+        totalPaid: 42000,
+        dividend: 6000,
+        bonus: 2000,
+      },
+      {
+        id: "fixed-100000",
+        name: "Plan 02",
+        chitValue: 100000,
+        monthly: 6000,
+        members: 50,
+        totalPaid: 84000,
+        dividend: 12000,
+        bonus: 4000,
+      },
+      {
+        id: "fixed-150000",
+        name: "Plan 03",
+        chitValue: 150000,
+        monthly: 9000,
+        members: 50,
+        totalPaid: 126000,
+        dividend: 18000,
+        bonus: 6000,
+      },
+      {
+        id: "fixed-200000",
+        name: "Plan 04",
+        chitValue: 200000,
+        monthly: 12000,
+        members: 50,
+        totalPaid: 168000,
+        dividend: 24000,
+        bonus: 8000,
+      },
+    ],
   },
-  { 
-    id: 'premium',
-    name: 'Premium', 
-    monthly: '₹5,000', 
-    term: '11 months', 
-    total: '₹55,000',
-    features: ['Eligible for Cash Redemption', 'Eligible for Jewellery Redemption', 'Digital Passbook', 'Priority Support', 'Exclusive Catalogue Access']
-  },
-  { 
-    id: 'elite',
-    name: 'Elite', 
-    monthly: '₹10,000', 
-    term: '11 months', 
-    total: '₹1,10,000',
-    features: ['Eligible for Cash Redemption', 'Eligible for Jewellery Redemption', 'Digital Passbook', 'Priority Support', 'Exclusive Catalogue Access', 'Dedicated Relationship Manager']
-  },
+};
+
+export const schemeBenefits = [
+  "Free Gift at the Time of Joining",
+  "Monthly Dividend",
+  "Bonus on Installment Paid",
+  "50% Discount on Making Charges",
+  "0% Wastage",
 ];
