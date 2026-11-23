@@ -11,16 +11,17 @@ import HelpSection from '../components/HelpSection.astro';
 import CTASection from '../components/CTASection.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
 import OfferPopup from '../components/OfferPopup.astro';
+import OfferBanner from '../components/OfferBanner.astro';
 ---
 
 <MainLayout title="Home">
   <HeroSection />
   <OfferPopup />
-  
+
   <AboutSection />
-  
+
   <WhyChooseUs />
-  
+
   <!-- Scheme Options -->
   <section class="schemes-overview" style="padding: 6rem 0; background: #fff;">
     <div class="container">
@@ -29,9 +30,9 @@ import OfferPopup from '../components/OfferPopup.astro';
         <span class="eyebrow" style="display: block; color: var(--color-gold-dark); font-size: 0.85rem; letter-spacing: 2px; font-weight: 600; margin-bottom: 0.5rem;">— SCHEME OPTIONS —</span>
         <h2 style="font-size: 2.2rem; color: var(--color-burgundy); margin: 0;">Choose Your Scheme</h2>
       </div>
-      
+
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1000px; margin: 0 auto;">
-        <SchemeCard 
+        <SchemeCard
           type="weight"
           title="Weight Based Scheme"
           subtitle="Every monthly installment is converted into gold at the applicable gold rate on the payment date. Your accumulated gold is redeemed against jewellery at maturity."
@@ -43,7 +44,7 @@ import OfferPopup from '../components/OfferPopup.astro';
             "Cancel: refund minus 20% of one month's installment"
           ]}
         />
-        <SchemeCard 
+        <SchemeCard
           type="amount"
           title="Amount Based Scheme"
           subtitle="Your monthly installments remain as money throughout the tenure. At maturity, the full accumulated amount is redeemed against jewellery."
@@ -59,15 +60,16 @@ import OfferPopup from '../components/OfferPopup.astro';
     </div>
   </section>
 
+  <!-- Offer Banner -->
+  <OfferBanner />
+
   <HowItWorks />
-  
+
   <AppPromoSection />
-  
+
   <CompanyContribution />
   <CTASection />
-  
+
   <HelpSection />
   <WhatsAppButton />
-  
-  
 </MainLayout>

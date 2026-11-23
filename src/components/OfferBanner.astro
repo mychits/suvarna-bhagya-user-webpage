@@ -1,0 +1,68 @@
+---
+// Image lives in: public/images/offer-banner.webp
+const bannerImage = "/images/offer.png";
+const bannerLink = "/plans";
+---
+
+<section class="offer-banner-section">
+  <div class="container">
+    <a href={bannerLink} class="offer-banner" aria-label="Join now - Suvarna Bhagya gold savings offer">
+      <img
+        src={bannerImage}
+        alt="Use promo code MCF-SB-100 and get your first ₹100 free on Digi Gold. Fixed gold saving chit scheme starting from ₹1,000 per month. 50% discount on making charge and 0% wastage."
+        width="1800"
+        height="651"
+        loading="lazy"
+        decoding="async"
+      />
+    </a>
+  </div>
+</section>
+
+<style>
+  .offer-banner-section {
+    padding: 3rem 0;
+    background: #fff;
+  }
+
+  .offer-banner {
+    display: block;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #ecd9a8;
+    box-shadow: 0 10px 30px rgba(120, 13, 46, 0.12);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .offer-banner:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(120, 13, 46, 0.18);
+  }
+
+  .offer-banner:focus-visible {
+    outline: 3px solid var(--color-gold, #d5ad32);
+    outline-offset: 3px;
+  }
+
+  .offer-banner img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 768px) {
+    .offer-banner-section {
+      padding: 2rem 0;
+    }
+
+    .offer-banner {
+      border-radius: 12px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .offer-banner {
+      transition: none;
+    }
+  }
+</style>
