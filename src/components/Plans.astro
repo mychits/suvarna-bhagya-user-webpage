@@ -21,10 +21,10 @@ const planBenefits = [
 
 <section class="plans-section">
   <div class="container">
-
     {categories.map((category, categoryIndex) => (
-      <div class={`scheme-category ${categoryIndex === 1 ? "second-category" : ""}`}>
-
+      <div
+        class={`scheme-category ${categoryIndex === 1 ? "second-category" : ""}`}
+      >
         <!-- CATEGORY HEADER -->
         <div class="category-header">
           <span class="category-eyebrow">
@@ -46,7 +46,6 @@ const planBenefits = [
         <div class="plans-grid">
           {category.plans.map((plan) => (
             <article class="plan-card">
-
               <!-- Burgundy header bar -->
               <div class="card-header">
                 <span class="plan-number">{plan.name}</span>
@@ -54,7 +53,6 @@ const planBenefits = [
               </div>
 
               <div class="card-body">
-
                 <!-- Chit Value -->
                 <div class="chit-value">
                   <span class="value-label">CHIT VALUE</span>
@@ -132,7 +130,6 @@ const planBenefits = [
                     <path d="m13 6 6 6-6 6" />
                   </svg>
                 </a>
-
               </div>
             </article>
           ))}
@@ -164,10 +161,18 @@ const planBenefits = [
 
         <div class="benefit-card">
           <div class="benefit-icon">
-            <svg viewBox="0 0 24 24">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
               <circle cx="12" cy="12" r="9" />
-              <path d="M12 7v10" />
-              <path d="M15 9H9a2 2 0 0 0 0 4h6a2 2 0 0 1 0 4H8" />
+              <path d="M8 7h8" />
+              <path d="M8 10h8" />
+              <path d="M9 7c3 0 4 1 4 3s-1 3-4 3H8l7 5" />
             </svg>
           </div>
           <h3>Monthly Dividend</h3>
@@ -195,11 +200,13 @@ const planBenefits = [
             </svg>
           </div>
           <h3>Jewellery Benefits</h3>
-          <p>50% discount on making charges and 0% wastage as per scheme conditions.</p>
+          <p>
+            50% discount on making charges and 0% wastage as per scheme
+            conditions.
+          </p>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -286,7 +293,9 @@ const planBenefits = [
     display: flex;
     flex-direction: column;
     box-shadow: 0 6px 22px rgba(60, 10, 25, 0.06);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
     min-width: 0;
   }
 
@@ -337,7 +346,9 @@ const planBenefits = [
     font-weight: 700;
     color: #3d0a1b;
     font-variant-numeric: lining-nums tabular-nums;
-    font-feature-settings: "lnum" 1, "tnum" 1;
+    font-feature-settings:
+      "lnum" 1,
+      "tnum" 1;
     letter-spacing: 0.3px;
     white-space: nowrap;
   }

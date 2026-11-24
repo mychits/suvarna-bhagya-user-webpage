@@ -1,0 +1,712 @@
+---
+import { PLAY_STORE_URL } from "../data/navigation";
+
+// Icon paths (24x24 line icons)
+const highlights = [
+  {
+    title: "Total Members",
+    stat: { value: 50, label: "members per group" },
+    text: "Every chit group is made up of 50 members.",
+    icon: `<circle cx="9" cy="8" r="4"/><path d="M3 21v-2a6 6 0 0 1 12 0v2"/><path d="M16 4.5a4 4 0 0 1 0 7"/><path d="M18 16a5 5 0 0 1 3 4v1"/>`,
+  },
+  {
+    title: "Scheme Duration",
+    stat: { value: 14, label: "months / installments" },
+    text: "The scheme runs for 14 months with 14 installments.",
+    icon: `<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>`,
+  },
+  {
+    title: "Dividend Benefit",
+    text: "Upon successful completion of all 14 installments, subscribers will receive a benefit equivalent to 2 monthly installments as a dividend.",
+   icon: `<path d="M6 4h12M6 8h12M6 4h5a4 4 0 0 1 0 8H6l9 8"/>`,
+  },
+  {
+    title: "Prompt Payment Bonus",
+    text: "Subscribers who pay their monthly installments on or before the due date will be eligible for an additional prompt payment bonus.",
+    icon: `<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>`,
+  },
+  {
+    title: "Bonus Calculation",
+    text: "₹2,000 for every ₹50,000 chit value, subject to the final scheme computation.",
+    icon: `<path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>`,
+  },
+  {
+    title: "Auto-Pay Facility",
+    text: "AutoPay / e-Mandate facility is available. Additional bonus benefits may be offered to subscribers opting for AutoPay.",
+    icon: `<path d="M21 12a9 9 0 0 0-15-6.7L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 15 6.7L21 16"/><path d="M16 16h5v5"/>`,
+  },
+];
+---
+
+<section class="scheme-highlights">
+  <div class="container">
+
+    <!-- Heading -->
+    <div class="hl-header">
+      <span class="hl-eyebrow rv" style="--d:0.1">— SCHEME HIGHLIGHTS —</span>
+      <h2 class="hl-title">
+        <span class="word"><span class="word-inner" style="--i:0">Scheme</span></span>
+        <span class="word"><span class="word-inner shimmer" style="--i:1">Highlights</span></span>
+      </h2>
+      <div class="hl-line"></div>
+    </div>
+
+    <!-- Joining gift banner -->
+    <div class="gift-banner rv rv-zoom" style="--d:0.4">
+      <div class="gift-banner-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 12 20 22 4 22 4 12"></polyline>
+          <rect x="2" y="7" width="20" height="5"></rect>
+          <line x1="12" y1="22" x2="12" y2="7"></line>
+          <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+          <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+        </svg>
+      </div>
+      <div class="gift-banner-text">
+        <h3>A Special Joining Gift for Every Subscriber!</h3>
+        <p>Every customer will receive a joining gift based on their selected chit group.</p>
+      </div>
+    </div>
+
+    <!-- Highlights grid -->
+    <div class="hl-grid">
+      {highlights.map((item, i) => (
+        <div class="hl-item rv" style={`--d:${(0.6 + i * 0.12).toFixed(2)}`}>
+          <article class="hl-card">
+            <span class="hl-number">{String(i + 1).padStart(2, "0")}</span>
+
+            <div class="hl-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" set:html={item.icon}></svg>
+            </div>
+
+            <h3>{item.title}</h3>
+
+            {item.stat && (
+              <div class="hl-stat">
+                <strong data-count={item.stat.value}>{item.stat.value}</strong>
+                <span>{item.stat.label}</span>
+              </div>
+            )}
+
+            <p>{item.text}</p>
+          </article>
+        </div>
+      ))}
+    </div>
+
+    <!-- Gold purchase benefits -->
+    <div class="benefits-panel rv" style="--d:0.2">
+      <div class="benefits-head">
+        <span class="hl-eyebrow light">— EXCLUSIVE BENEFITS —</span>
+        <h3>Exclusive Gold Purchase Benefits</h3>
+        <p>Upon successful completion of the scheme, subscribers can choose either:</p>
+      </div>
+
+      <div class="options">
+        <div class="option rv rv-left" style="--d:0.5">
+          <div class="option-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="6" width="20" height="13" rx="2"></rect>
+              <circle cx="12" cy="12.5" r="3"></circle>
+              <path d="M6 9.5v0M18 15.5v0"></path>
+            </svg>
+          </div>
+          <h4>Receive in Cash</h4>
+          <p>Receive the eligible amount in cash, including applicable dividend and bonuses.</p>
+        </div>
+
+        <div class="or-circle rv rv-zoom" style="--d:0.8">OR</div>
+
+        <div class="option rv rv-right" style="--d:0.5">
+          <div class="option-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 3h12l4 6-10 12L2 9z"></path>
+              <path d="M2 9h20"></path>
+              <path d="m12 21-4-12 4-6 4 6z"></path>
+            </svg>
+          </div>
+          <h4>Purchase Gold Jewellery</h4>
+          <p>Purchase gold ornaments and jewellery through our gold purchase facility.</p>
+        </div>
+      </div>
+
+      <div class="benefits-cta rv" style="--d:1">
+        <a href="/plans" class="cta-btn">
+          EXPLORE OUR PLANS
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"></path>
+            <path d="m13 6 6 6-6 6"></path>
+          </svg>
+        </a>
+        <a href={PLAY_STORE_URL} target="_blank" rel="noopener" class="cta-link">
+          Download the App
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const section = document.querySelector<HTMLElement>(".scheme-highlights");
+
+  if (section) {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const counters = Array.from(
+      section.querySelectorAll<HTMLElement>("[data-count]")
+    );
+
+    // Count numbers up from 0
+    const runCounters = () => {
+      counters.forEach((el) => {
+        const target = Number(el.dataset.count ?? 0);
+        const delay = 900;
+        const duration = 1400;
+        const start = performance.now() + delay;
+
+        const tick = (now: number) => {
+          if (now < start) {
+            requestAnimationFrame(tick);
+            return;
+          }
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = String(Math.round(target * eased));
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      });
+    };
+
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      section.classList.add("is-visible");
+    } else {
+      section.classList.add("anim");
+      counters.forEach((el) => (el.textContent = "0"));
+
+      // Watch sub-parts so each block animates when it is actually reached
+      const parts = Array.from(
+        section.querySelectorAll<HTMLElement>(
+          ".hl-header, .gift-banner, .hl-grid, .benefits-panel"
+        )
+      );
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-visible");
+            if (entry.target.classList.contains("hl-grid")) runCounters();
+            observer.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+      );
+
+      parts.forEach((part) => observer.observe(part));
+    }
+  }
+</script>
+
+<style>
+  .scheme-highlights {
+    padding: 6rem 0;
+    background: #fff;
+    overflow: hidden;
+  }
+
+  /* ---------- Scroll reveal ----------
+     .anim is on the section (hides things first).
+     .is-visible is on each block once it is scrolled into view.   */
+  .anim .rv {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  .anim .rv-left { transform: translateX(-60px); }
+  .anim .rv-right { transform: translateX(60px); }
+  .anim .rv-zoom { transform: scale(0.85); }
+
+  .anim .is-visible .rv,
+  .anim .is-visible.rv {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.8s ease,
+      transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition-delay: calc(var(--d, 0) * 1s);
+  }
+
+  /* ---------- Heading ---------- */
+  .hl-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .hl-eyebrow {
+    display: block;
+    color: var(--color-gold-dark, #9a7627);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    margin-bottom: 0.6rem;
+  }
+  .hl-eyebrow.light {
+    color: var(--color-gold, #d5ad32);
+  }
+
+  .hl-title {
+    color: var(--color-burgundy, #780d2e);
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4.5vw, 2.8rem);
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  .word {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    padding-bottom: 0.15em;
+    margin-bottom: -0.15em;
+  }
+  .word-inner {
+    display: inline-block;
+  }
+  .anim .word-inner {
+    transform: translateY(115%);
+  }
+  .anim .is-visible .word-inner {
+    transform: none;
+    transition: transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition-delay: calc(var(--i) * 0.15s + 0.2s);
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      #a9822a 0%,
+      #a9822a 35%,
+      #f3d77a 50%,
+      #a9822a 65%,
+      #a9822a 100%
+    );
+    background-size: 220% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s linear infinite;
+  }
+  @keyframes shimmer {
+    from { background-position: 100% center; }
+    to { background-position: -100% center; }
+  }
+
+  .hl-line {
+    width: 70px;
+    height: 2px;
+    margin: 1rem auto 0;
+    background: linear-gradient(90deg, transparent, var(--color-gold, #d5ad32), transparent);
+  }
+  .anim .hl-line {
+    width: 0;
+  }
+  .anim .is-visible .hl-line {
+    width: 70px;
+    transition: width 0.9s ease 0.6s;
+  }
+
+  /* ---------- Gift banner ---------- */
+  .gift-banner {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    max-width: 900px;
+    margin: 0 auto 3rem;
+    padding: 1.5rem 1.8rem;
+    background: linear-gradient(120deg, #650b0b, #8a1c3a 55%, #650b0b);
+    border: 2px solid #e5b94e;
+    border-radius: 16px;
+    color: #fff;
+    box-shadow: 0 12px 30px rgba(107, 15, 42, 0.22);
+  }
+
+  .gift-banner::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255, 223, 105, 0.22), transparent);
+    transform: skewX(-18deg);
+  }
+  .is-visible.gift-banner::after {
+    animation: sweep 5s ease-in-out 1.5s infinite;
+  }
+  @keyframes sweep {
+    0% { left: -60%; }
+    45%, 100% { left: 140%; }
+  }
+
+  .gift-banner-icon {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255, 223, 105, 0.12);
+    border: 1px solid rgba(255, 223, 105, 0.5);
+    color: #ffdf69;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-origin: 50% 90%;
+  }
+  .gift-banner-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+  .is-visible .gift-banner-icon {
+    animation: giftWiggle 4s ease-in-out 2s infinite;
+  }
+  @keyframes giftWiggle {
+    0%, 82%, 100% { transform: rotate(0); }
+    86% { transform: rotate(-12deg) scale(1.1); }
+    90% { transform: rotate(10deg) scale(1.1); }
+    94% { transform: rotate(-6deg); }
+  }
+
+  .gift-banner-text h3 {
+    margin: 0 0 0.3rem;
+    color: #ffdf69;
+    font-family: var(--font-heading);
+    font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+    line-height: 1.25;
+  }
+  .gift-banner-text p {
+    margin: 0;
+    color: #f0c9d4;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* ---------- Highlights grid ---------- */
+  .hl-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.4rem;
+    margin-bottom: 4rem;
+  }
+
+  .hl-item {
+    height: 100%;
+  }
+
+  .hl-card {
+    position: relative;
+    height: 100%;
+    padding: 1.7rem 1.5rem 1.5rem;
+    background: #fff;
+    border: 1px solid #eee5d8;
+    border-top: 3px solid var(--color-gold, #d5ad32);
+    border-radius: 12px;
+    box-shadow: 0 6px 22px rgba(60, 10, 25, 0.05);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .hl-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 34px rgba(80, 10, 30, 0.12);
+  }
+
+  .hl-number {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    color: #efe3c6;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .hl-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+    border-radius: 50%;
+    background: #faf3e5;
+    color: #a9862d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.35s ease, color 0.35s ease, transform 0.35s ease;
+  }
+  .hl-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+  .hl-card:hover .hl-icon {
+    background: var(--color-burgundy, #780d2e);
+    color: var(--color-gold, #d5ad32);
+    transform: scale(1.08) rotate(-6deg);
+  }
+
+  .hl-card h3 {
+    margin: 0 0 0.6rem;
+    color: var(--color-burgundy, #780d2e);
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+  }
+
+  .hl-stat {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .hl-stat strong {
+    color: #a77d29;
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    line-height: 1;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+  .hl-stat span {
+    color: #806b4e;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .hl-card p {
+    margin: 0;
+    color: #666;
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
+  /* ---------- Gold purchase benefits ---------- */
+  .benefits-panel {
+    position: relative;
+    padding: 3rem 2rem 2.6rem;
+    background: var(--color-burgundy, #780d2e);
+    border-radius: 20px;
+    overflow: hidden;
+    color: #fff;
+  }
+  .benefits-panel::before,
+  .benefits-panel::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: #d5ad32;
+    opacity: 0.07;
+    pointer-events: none;
+  }
+  .benefits-panel::before {
+    width: 300px;
+    height: 300px;
+    top: -120px;
+    left: -90px;
+  }
+  .benefits-panel::after {
+    width: 220px;
+    height: 220px;
+    bottom: -90px;
+    right: -60px;
+  }
+
+  .benefits-head {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .benefits-head h3 {
+    margin: 0 0 0.6rem;
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+  }
+  .benefits-head p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1rem;
+  }
+
+  .options {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: stretch;
+    gap: 1.2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .option {
+    padding: 1.7rem 1.5rem;
+    text-align: center;
+    background: #fffdf8;
+    border: 1px solid #e3c77a;
+    border-radius: 14px;
+    color: #4a3a28;
+  }
+  .option-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 0.9rem;
+    border-radius: 50%;
+    background: var(--color-burgundy, #780d2e);
+    color: var(--color-gold, #d5ad32);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .option-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+  .option h4 {
+    margin: 0 0 0.5rem;
+    color: var(--color-burgundy, #780d2e);
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+  }
+  .option p {
+    margin: 0;
+    font-size: 0.93rem;
+    line-height: 1.7;
+    color: #666;
+  }
+
+  .or-circle {
+    align-self: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--color-gold, #d5ad32);
+    color: var(--color-burgundy, #780d2e);
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .is-visible .or-circle {
+    animation: orPulse 2.6s ease-in-out 1.8s infinite;
+  }
+  @keyframes orPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(213, 173, 50, 0.5); }
+    50% { box-shadow: 0 0 0 12px rgba(213, 173, 50, 0); }
+  }
+
+  .benefits-cta {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 2.2rem;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.85rem 1.8rem;
+    background: linear-gradient(135deg, #ffda64, #d69a20);
+    border: 1px solid #a96d0d;
+    border-radius: 30px;
+    color: #67110d;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .cta-btn svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+  }
+  .cta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+  .cta-btn:hover svg {
+    transform: translateX(4px);
+  }
+
+  .cta-link {
+    color: #f3e5ab;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(243, 229, 171, 0.5);
+    padding-bottom: 3px;
+    transition: color 0.3s ease;
+  }
+  .cta-link:hover {
+    color: #fff;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 960px) {
+    .hl-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 700px) {
+    .scheme-highlights {
+      padding: 4rem 0;
+    }
+
+    .gift-banner {
+      flex-direction: column;
+      text-align: center;
+      padding: 1.5rem 1.2rem;
+    }
+
+    .options {
+      grid-template-columns: 1fr;
+    }
+
+    .or-circle {
+      justify-self: center;
+    }
+
+    .benefits-panel {
+      padding: 2.4rem 1.2rem 2rem;
+    }
+
+    /* slide up instead of sideways on small screens */
+    .anim .rv-left,
+    .anim .rv-right {
+      transform: translateY(30px);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hl-grid {
+      grid-template-columns: 1fr;
+      margin-bottom: 3rem;
+    }
+  }
+
+  /* ---------- Reduced motion ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    .shimmer,
+    .gift-banner::after,
+    .gift-banner-icon,
+    .or-circle {
+      animation: none !important;
+    }
+  }
+</style>

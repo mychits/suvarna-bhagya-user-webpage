@@ -2,14 +2,64 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import { generateSEO } from '../utils/seo';
 const seo = generateSEO('About Us', 'Learn about Suvarna Bhagya, our mission, and our commitment to secure gold savings.');
+
+// Splits a heading into words so each word can animate on its own
+const words = (text: string) => text.split(' ');
+
+// Scheme highlights (line icons, 24x24)
+const highlights = [
+  {
+    title: 'Total Members',
+    text: '50 members per group.',
+    icon: `<circle cx="9" cy="8" r="4"/><path d="M3 21v-2a6 6 0 0 1 12 0v2"/><path d="M16 4.5a4 4 0 0 1 0 7"/><path d="M18 16a5 5 0 0 1 3 4v1"/>`,
+  },
+  {
+    title: 'Scheme Duration',
+    text: '14 months / 14 installments.',
+    icon: `<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>`,
+  },
+  {
+    title: 'Dividend Benefit',
+    text: 'Upon successful completion of all 14 installments, subscribers will receive a benefit equivalent to 2 monthly installments as a dividend.',
+    icon: `<path d="M6 4h12M6 8h12M6 4h5a4 4 0 0 1 0 8H6l9 8"/>`,
+  },
+  {
+    title: 'Prompt Payment Bonus',
+    text: 'Subscribers who pay their monthly installments on or before the due date will be eligible for an additional prompt payment bonus.',
+    icon: `<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>`,
+  },
+  {
+    title: 'Bonus Calculation',
+    text: '₹2,000 for every ₹50,000 chit value, subject to the final scheme computation.',
+    icon: `<path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>`,
+  },
+  {
+    title: 'Auto-Pay Facility',
+    text: 'AutoPay / e-Mandate facility is available. Additional bonus benefits may be offered to subscribers opting for AutoPay.',
+    icon: `<path d="M21 12a9 9 0 0 0-15-6.7L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 15 6.7L21 16"/><path d="M16 16h5v5"/>`,
+  },
+];
 ---
 
 <MainLayout title={seo.title} description={seo.description}>
+  <!-- Turns on the hidden "before scroll" state (skipped if reduced motion is on) -->
+  <script is:inline>
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('about-anim');
+    }
+  </script>
+
   <!-- Enhanced Page Header -->
   <div class="page-header">
     <div class="container header-content">
       <span class="eyebrow">— OUR STORY —</span>
-      <h1>About Suvarna Bhagya</h1>
+      <h1 data-words>
+        {words('About Suvarna Bhagya').map((w, i) => (
+          <>
+            <span class="word"><span class="word-inner" style={`--i:${i}`}>{w}</span></span>{' '}
+          </>
+        ))}
+      </h1>
       <p>Building Trust, One Gram at a Time.</p>
     </div>
     <div class="header-decor header-decor-left"></div>
@@ -17,29 +67,158 @@ const seo = generateSEO('About Us', 'Learn about Suvarna Bhagya, our mission, an
   </div>
 
   <div class="container about-content">
+
+    <!-- Intro + Joining Gift -->
+    <section class="about-block intro-block">
+      <div class="section-header center-align">
+        <span class="eyebrow rv" style="color: var(--color-gold-dark); --d:0.05">— SAVE MONTHLY —</span>
+        <h2 class="sec-title" data-words>
+          {words('Save Monthly – Celebrate Your Golden Dreams!').map((w, i, arr) => (
+            <>
+              <span class="word"><span class={`word-inner ${i >= arr.length - 2 ? 'shimmer' : ''}`} style={`--i:${i}`}>{w}</span></span>{' '}
+            </>
+          ))}
+        </h2>
+        <div class="gold-divider" data-line></div>
+      </div>
+
+      <p class="intro-text rv" style="--d:0.2">
+        Make your dream of owning gold come true with Suvarna Bhagya, a special
+        gold purchase savings scheme designed to help you save systematically
+        and enjoy exclusive benefits.
+      </p>
+
+      <div class="gift-banner rv rv-zoom" style="--d:0.3">
+        <div class="gift-banner-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 12 20 22 4 22 4 12"></polyline>
+            <rect x="2" y="7" width="20" height="5"></rect>
+            <line x1="12" y1="22" x2="12" y2="7"></line>
+            <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+            <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+          </svg>
+        </div>
+        <div class="gift-banner-text">
+          <h3>A Special Joining Gift for Every Subscriber!</h3>
+          <p>Every customer will receive a joining gift based on their selected chit group.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- Mission Section -->
     <section class="about-block mission-block">
       <div class="block-text">
         <div class="section-header left-align">
-          <span class="eyebrow" style="color: var(--color-gold-dark);">— OUR MISSION —</span>
-          <h2 style="color: var(--color-burgundy); font-size: 2.2rem; margin: 0.4rem 0 1rem;">A Legacy of Gold Savings</h2>
-          <div class="gold-divider-left"></div>
+          <span class="eyebrow rv" style="color: var(--color-gold-dark); --d:0.05">— OUR MISSION —</span>
+          <h2 class="sec-title" data-words>
+            {words('A Legacy of Gold Savings').map((w, i, arr) => (
+              <>
+                <span class="word"><span class={`word-inner ${i === arr.length - 1 ? 'shimmer' : ''}`} style={`--i:${i}`}>{w}</span></span>{' '}
+              </>
+            ))}
+          </h2>
+          <div class="gold-divider-left" data-line></div>
         </div>
-        <p>We are dedicated to providing a transparent, secure, and accessible gold savings platform for every Indian household. Our goal is to help you build a gold legacy month by month, with the flexibility to redeem in cash or exquisite jewellery at maturity.</p>
-        <p>Since our inception, we have helped thousands of families turn small monthly savings into beautiful, lasting gold jewellery — all while maintaining complete transparency and digital security.</p>
+        <p class="rv" style="--d:0.2">We are dedicated to providing a transparent, secure, and accessible gold savings platform for every Indian household. Our goal is to help you build a gold legacy month by month, with the flexibility to redeem in cash or exquisite jewellery at maturity.</p>
+        <p class="rv" style="--d:0.35">Since our inception, we have helped thousands of families turn small monthly savings into beautiful, lasting gold jewellery — all while maintaining complete transparency and digital security.</p>
       </div>
+
       <div class="block-stats">
-        <div class="stat-card">
-          <strong>30+</strong>
-          <span>Years of Trust</span>
+        <div class="stat-wrap rv rv-right" style="--d:0.2">
+          <div class="stat-card">
+            <strong><span data-count="30">30</span>+</strong>
+            <span>Years of Trust</span>
+          </div>
         </div>
-        <div class="stat-card">
-          <strong>50K+</strong>
-          <span>Happy Customers</span>
+        <div class="stat-wrap rv rv-right" style="--d:0.35">
+          <div class="stat-card">
+            <strong><span data-count="50">50</span>K+</strong>
+            <span>Happy Customers</span>
+          </div>
         </div>
-        <div class="stat-card">
-          <strong>100%</strong>
-          <span>BIS Hallmarked</span>
+        <div class="stat-wrap rv rv-right" style="--d:0.5">
+          <div class="stat-card">
+            <strong><span data-count="100">100</span>%</strong>
+            <span>BIS Hallmarked</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scheme Highlights -->
+    <section class="about-block highlights-block">
+      <div class="section-header center-align">
+        <span class="eyebrow rv" style="color: var(--color-gold-dark); --d:0.05">— SCHEME HIGHLIGHTS —</span>
+        <h2 class="sec-title" data-words>
+          {words('Everything You Need To Know').map((w, i, arr) => (
+            <>
+              <span class="word"><span class={`word-inner ${i >= arr.length - 2 ? 'shimmer' : ''}`} style={`--i:${i}`}>{w}</span></span>{' '}
+            </>
+          ))}
+        </h2>
+        <div class="gold-divider" data-line></div>
+      </div>
+
+      <div class="hl-grid">
+        {highlights.map((item, i) => (
+          <div class="hl-item rv" style={`--d:${(0.1 + (i % 3) * 0.15).toFixed(2)}`}>
+            <article class="hl-card">
+              <span class="hl-number">{String(i + 1).padStart(2, '0')}</span>
+              <div class="hl-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" set:html={item.icon}></svg>
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Exclusive Gold Purchase Benefits -->
+    <section class="about-block benefits-block">
+      <div class="benefits-panel rv rv-zoom" style="--d:0.05">
+        <div class="benefits-head">
+          <span class="eyebrow light">— EXCLUSIVE BENEFITS —</span>
+          <h2 class="light-title" data-words>
+            {words('Exclusive Gold Purchase Benefits').map((w, i, arr) => (
+              <>
+                <span class="word"><span class="word-inner" style={`--i:${i}`}>{w}</span></span>{' '}
+              </>
+            ))}
+          </h2>
+          <p class="rv" style="--d:0.3">Upon successful completion of the scheme, subscribers can choose either:</p>
+        </div>
+
+        <div class="options">
+          <div class="option-wrap rv rv-left" style="--d:0.4">
+            <div class="option">
+              <div class="option-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="6" width="20" height="13" rx="2"></rect>
+                  <circle cx="12" cy="12.5" r="3"></circle>
+                </svg>
+              </div>
+              <h3>Receive in Cash</h3>
+              <p>Receive the eligible amount in cash, including applicable dividend and bonuses.</p>
+            </div>
+          </div>
+
+          <div class="or-circle rv rv-zoom" style="--d:0.7">OR</div>
+
+          <div class="option-wrap rv rv-right" style="--d:0.4">
+            <div class="option">
+              <div class="option-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M6 3h12l4 6-10 12L2 9z"></path>
+                  <path d="M2 9h20"></path>
+                  <path d="m12 21-4-12 4-6 4 6z"></path>
+                </svg>
+              </div>
+              <h3>Purchase Gold Jewellery</h3>
+              <p>Purchase gold ornaments and jewellery through our gold purchase facility.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -47,38 +226,52 @@ const seo = generateSEO('About Us', 'Learn about Suvarna Bhagya, our mission, an
     <!-- Why Choose Us Section -->
     <section class="about-block why-block">
       <div class="section-header center-align">
-        <span class="eyebrow" style="color: var(--color-gold-dark);">— WHY CHOOSE US —</span>
-        <h2 style="color: var(--color-burgundy); font-size: 2.2rem; margin: 0.4rem 0 1rem;">What Sets Us Apart</h2>
-        <div class="gold-divider"></div>
+        <span class="eyebrow rv" style="color: var(--color-gold-dark); --d:0.05">— WHY CHOOSE US —</span>
+        <h2 class="sec-title" data-words>
+          {words('What Sets Us Apart').map((w, i, arr) => (
+            <>
+              <span class="word"><span class={`word-inner ${i === arr.length - 1 ? 'shimmer' : ''}`} style={`--i:${i}`}>{w}</span></span>{' '}
+            </>
+          ))}
+        </h2>
+        <div class="gold-divider" data-line></div>
       </div>
       <div class="values-grid">
-        <div class="value-card">
-          <div class="value-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        <div class="vc rv rv-left" style="--d:0.1">
+          <div class="value-card">
+            <div class="value-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <h3>Transparency</h3>
+            <p>Clear terms, no hidden fees, and a digital passbook to track every installment in real-time.</p>
           </div>
-          <h3>Transparency</h3>
-          <p>Clear terms, no hidden fees, and a digital passbook to track every installment in real-time.</p>
         </div>
-        <div class="value-card">
-          <div class="value-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        <div class="vc rv rv-right" style="--d:0.2">
+          <div class="value-card">
+            <div class="value-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            </div>
+            <h3>Security</h3>
+            <p>Bank-grade encryption and secure KYC processes to protect your data and investments.</p>
           </div>
-          <h3>Security</h3>
-          <p>Bank-grade encryption and secure KYC processes to protect your data and investments.</p>
         </div>
-        <div class="value-card">
-          <div class="value-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        <div class="vc rv rv-left" style="--d:0.1">
+          <div class="value-card">
+            <div class="value-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </div>
+            <h3>Flexibility</h3>
+            <p>Multiple plans to suit your budget and redemption choices at maturity — cash or jewellery.</p>
           </div>
-          <h3>Flexibility</h3>
-          <p>Multiple plans to suit your budget and redemption choices at maturity — cash or jewellery.</p>
         </div>
-        <div class="value-card">
-          <div class="value-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        <div class="vc rv rv-right" style="--d:0.2">
+          <div class="value-card">
+            <div class="value-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </div>
+            <h3>Trust</h3>
+            <p>Backed by approved scheme rules and a dedicated support team available 6 days a week.</p>
           </div>
-          <h3>Trust</h3>
-          <p>Backed by approved scheme rules and a dedicated support team available 6 days a week.</p>
         </div>
       </div>
     </section>
@@ -86,24 +279,83 @@ const seo = generateSEO('About Us', 'Learn about Suvarna Bhagya, our mission, an
     <!-- Branches Section -->
     <section class="about-block branches-block">
       <div class="section-header center-align">
-        <span class="eyebrow" style="color: var(--color-gold-dark);">— OUR PRESENCE —</span>
-        <h2 style="color: var(--color-burgundy); font-size: 2.2rem; margin: 0.4rem 0 1rem;">Visit Our Showroom</h2>
-        <div class="gold-divider"></div>
+        <span class="eyebrow rv" style="color: var(--color-gold-dark); --d:0.05">— OUR PRESENCE —</span>
+        <h2 class="sec-title" data-words>
+          {words('Visit Our Office').map((w, i, arr) => (
+            <>
+              <span class="word"><span class={`word-inner ${i === arr.length - 1 ? 'shimmer' : ''}`} style={`--i:${i}`}>{w}</span></span>{' '}
+            </>
+          ))}
+        </h2>
+        <div class="gold-divider" data-line></div>
       </div>
-      <p class="branches-desc">We are expanding our presence to serve you better. Visit our flagship showroom for a personalized experience and to explore our exclusive jewellery collection.</p>
-      <div class="branch-card">
-        <div class="branch-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-        </div>
-        <div class="branch-info">
-          <strong>Flagship Showroom</strong>
-          <span>123 Gold Street, Bengaluru, Karnataka 560001</span>
-          <span class="branch-hours">Mon – Sat: 10 AM – 8 PM</span>
+      <p class="branches-desc rv" style="--d:0.15">We are expanding our presence to serve you better. Visit our flagship office for a personalized experience and to explore our exclusive jewellery collection.</p>
+      <div class="branch-wrap rv" style="--d:0.3">
+        <div class="branch-card">
+          <div class="branch-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          </div>
+          <div class="branch-info">
+            <strong>Flagship Office</strong>
+            <span>11/36-25, 3rd Floor, 2nd Main, Kathriguppe Main Road, Banashankari Stage 3, Bengaluru Karnataka - 560085</span>
+            <span class="branch-hours">Mon – Sat: 10 AM – 7 PM</span>
+          </div>
         </div>
       </div>
     </section>
   </div>
 </MainLayout>
+
+<script>
+  const targets = Array.from(
+    document.querySelectorAll<HTMLElement>('.rv, [data-words], [data-line]')
+  );
+  const counters = Array.from(
+    document.querySelectorAll<HTMLElement>('[data-count]')
+  );
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Count a number up from 0
+  const countUp = (el: HTMLElement) => {
+    const target = Number(el.dataset.count ?? 0);
+    const start = performance.now() + 300;
+    const duration = 1400;
+
+    const tick = (now: number) => {
+      if (now < start) {
+        requestAnimationFrame(tick);
+        return;
+      }
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = String(Math.round(target * eased));
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
+
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    targets.forEach((el) => el.classList.add('is-in'));
+  } else {
+    counters.forEach((el) => (el.textContent = '0'));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target as HTMLElement;
+          el.classList.add('is-in');
+          if (el.hasAttribute('data-count')) countUp(el);
+          observer.unobserve(el);
+        });
+      },
+      { threshold: 0, rootMargin: '0px 0px -10% 0px' }
+    );
+
+    targets.forEach((el) => observer.observe(el));
+    counters.forEach((el) => observer.observe(el));
+  }
+</script>
 
 <style>
   /* ---------- PAGE HEADER ---------- */
@@ -125,6 +377,7 @@ const seo = generateSEO('About Us', 'Learn about Suvarna Bhagya, our mission, an
     font-size: 0.85rem; letter-spacing: 3px; font-weight: 600;
     margin-bottom: 1rem; text-transform: uppercase;
   }
+  .eyebrow.light { color: var(--color-gold); }
   .page-header h1 {
     color: var(--color-gold); font-size: 3.2rem;
     line-height: 1.15; margin: 0 0 1rem; font-family: var(--font-heading);
@@ -144,31 +397,169 @@ const seo = generateSEO('About Us', 'Learn about Suvarna Bhagya, our mission, an
   }
   @keyframes floatSlow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
+  /* ---------- SCROLL REVEAL ---------- */
+  :global(.about-anim) .rv {
+    opacity: 0;
+    transform: translateY(34px);
+    transition:
+      opacity 0.8s ease,
+      transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition-delay: calc(var(--d, 0) * 1s);
+  }
+  :global(.about-anim) .rv-left { transform: translateX(-60px); }
+  :global(.about-anim) .rv-right { transform: translateX(60px); }
+  :global(.about-anim) .rv-zoom { transform: scale(0.88); }
+  :global(.about-anim) .rv.is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Word-by-word heading reveal */
+  .word {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    padding-bottom: 0.15em;
+    margin-bottom: -0.15em;
+  }
+  .word-inner { display: inline-block; }
+  :global(.about-anim) [data-words] .word-inner {
+    transform: translateY(115%);
+  }
+  :global(.about-anim) [data-words].is-in .word-inner {
+    transform: none;
+    transition: transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition-delay: calc(var(--i) * 0.12s + 0.15s);
+  }
+
+  /* Gold shimmer on the last words */
+  .shimmer {
+    background: linear-gradient(90deg, #a9822a 0%, #a9822a 35%, #f3d77a 50%, #a9822a 65%, #a9822a 100%);
+    background-size: 220% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s linear infinite;
+  }
+  @keyframes shimmer {
+    from { background-position: 100% center; }
+    to { background-position: -100% center; }
+  }
+
+  /* Gold lines grow */
+  :global(.about-anim) [data-line] { width: 0; }
+  :global(.about-anim) .gold-divider.is-in,
+  :global(.about-anim) .gold-divider-left.is-in {
+    transition: width 0.9s ease 0.5s;
+  }
+  :global(.about-anim) .gold-divider.is-in { width: 70px; }
+  :global(.about-anim) .gold-divider-left.is-in { width: 60px; }
+
   /* ---------- ABOUT CONTENT ---------- */
-  .about-content { padding: 6rem 0; background: var(--color-ivory, #f9f6f0); }
+  .about-content { padding: 6rem 0; background: var(--color-ivory, #f9f6f0); overflow: hidden; }
   .about-block { max-width: 1000px; margin: 0 auto 6rem; }
   .about-block:last-child { margin-bottom: 0; }
 
-  /* Shared section header helpers */
+  .sec-title {
+    color: var(--color-burgundy);
+    font-size: 2.2rem;
+    line-height: 1.2;
+    margin: 0.4rem 0 1rem;
+  }
+
   .section-header.left-align { text-align: left; }
   .section-header.center-align { text-align: center; max-width: 700px; margin: 0 auto 3rem; }
   .gold-divider-left { width: 60px; height: 2px; background: var(--color-gold); margin: 0 0 1.5rem 0; }
   .gold-divider { width: 70px; height: 2px; background: var(--color-gold); margin: 0 auto; }
 
+  /* Intro + gift */
+  .intro-block .section-header { margin-bottom: 1.5rem; max-width: 800px; }
+  .intro-text {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+    color: #555;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  .gift-banner {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 1.5rem 1.8rem;
+    background: linear-gradient(120deg, #650b0b, #8a1c3a 55%, #650b0b);
+    border: 2px solid #e5b94e;
+    border-radius: 16px;
+    color: #fff;
+    box-shadow: 0 12px 30px rgba(107, 15, 42, 0.22);
+  }
+  .gift-banner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(100deg, transparent, rgba(255, 223, 105, 0.22), transparent);
+    transform: skewX(-18deg);
+    animation: sweep 5s ease-in-out 1.5s infinite;
+  }
+  @keyframes sweep {
+    0% { left: -60%; }
+    45%, 100% { left: 140%; }
+  }
+  .gift-banner-icon {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255, 223, 105, 0.12);
+    border: 1px solid rgba(255, 223, 105, 0.5);
+    color: #ffdf69;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-origin: 50% 90%;
+    animation: giftWiggle 4s ease-in-out 2s infinite;
+  }
+  .gift-banner-icon svg { width: 32px; height: 32px; }
+  @keyframes giftWiggle {
+    0%, 82%, 100% { transform: rotate(0); }
+    86% { transform: rotate(-12deg) scale(1.1); }
+    90% { transform: rotate(10deg) scale(1.1); }
+    94% { transform: rotate(-6deg); }
+  }
+  .gift-banner-text h3 {
+    margin: 0 0 0.3rem;
+    color: #ffdf69;
+    font-family: var(--font-heading);
+    font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+    line-height: 1.25;
+  }
+  .gift-banner-text p {
+    margin: 0;
+    color: #f0c9d4;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
   /* Mission block */
   .mission-block { display: grid; grid-template-columns: 1.4fr 1fr; gap: 4rem; align-items: center; }
   .block-text p { color: #555; line-height: 1.7; margin-bottom: 1.2rem; font-size: 1.05rem; }
   .block-stats { display: flex; flex-direction: column; gap: 1.2rem; }
+  .stat-wrap { display: block; }
   .stat-card {
     background: #fff; border-radius: 12px; padding: 1.5rem;
     text-align: center; border: 1px solid #eee;
     box-shadow: 0 4px 12px rgba(0,0,0,0.04);
     transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
-    animation: fadeUp 0.6s ease both;
   }
-  .stat-card:nth-child(1) { animation-delay: 0.1s; }
-  .stat-card:nth-child(2) { animation-delay: 0.2s; }
-  .stat-card:nth-child(3) { animation-delay: 0.3s; }
   .stat-card:hover {
     transform: translateY(-4px); border-color: var(--color-gold);
     box-shadow: 0 12px 28px rgba(128, 0, 32, 0.1);
@@ -176,24 +567,151 @@ const seo = generateSEO('About Us', 'Learn about Suvarna Bhagya, our mission, an
   .stat-card strong {
     display: block; font-size: 2rem; color: var(--color-burgundy);
     font-family: var(--font-heading); margin-bottom: 0.2rem;
+    font-variant-numeric: lining-nums tabular-nums;
   }
   .stat-card span { font-size: 0.85rem; color: #777; text-transform: uppercase; letter-spacing: 1px; }
+  .stat-card strong span { font-size: inherit; color: inherit; text-transform: none; letter-spacing: normal; }
+
+  /* Scheme highlights */
+  .hl-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.4rem;
+  }
+  .hl-item { height: 100%; }
+  .hl-card {
+    position: relative;
+    height: 100%;
+    padding: 1.7rem 1.5rem 1.5rem;
+    background: #fff;
+    border: 1px solid #eee5d8;
+    border-top: 3px solid var(--color-gold, #d5ad32);
+    border-radius: 12px;
+    box-shadow: 0 6px 22px rgba(60, 10, 25, 0.05);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .hl-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 34px rgba(80, 10, 30, 0.12);
+  }
+  .hl-number {
+    position: absolute;
+    top: 1rem;
+    right: 1.2rem;
+    color: #efe3c6;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .hl-icon {
+    width: 48px; height: 48px; margin-bottom: 1rem; border-radius: 50%;
+    background: #faf3e5; color: #a9862d;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.35s ease, color 0.35s ease, transform 0.35s ease;
+  }
+  .hl-icon svg { width: 24px; height: 24px; }
+  .hl-card:hover .hl-icon {
+    background: var(--color-burgundy); color: var(--color-gold); transform: scale(1.08) rotate(-6deg);
+  }
+  .hl-card h3 {
+    margin: 0 0 0.6rem; color: var(--color-burgundy);
+    font-family: var(--font-heading); font-size: 1.2rem;
+  }
+  .hl-card p { margin: 0; color: #666; font-size: 0.92rem; line-height: 1.7; }
+
+  /* Exclusive benefits panel */
+  .benefits-panel {
+    position: relative;
+    padding: 3rem 2rem 2.6rem;
+    background: var(--color-burgundy);
+    border-radius: 20px;
+    overflow: hidden;
+    color: #fff;
+  }
+  .benefits-panel::before,
+  .benefits-panel::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: #d5ad32;
+    opacity: 0.07;
+    pointer-events: none;
+  }
+  .benefits-panel::before { width: 300px; height: 300px; top: -120px; left: -90px; }
+  .benefits-panel::after { width: 220px; height: 220px; bottom: -90px; right: -60px; }
+
+  .benefits-head { position: relative; z-index: 1; text-align: center; margin-bottom: 2rem; }
+  .light-title {
+    margin: 0.3rem 0 0.7rem;
+    color: #fff;
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+    line-height: 1.2;
+  }
+  .benefits-head p { margin: 0; color: rgba(255, 255, 255, 0.8); }
+
+  .options {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: stretch;
+    gap: 1.2rem;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .option-wrap { height: 100%; }
+  .option {
+    height: 100%;
+    padding: 1.7rem 1.5rem;
+    text-align: center;
+    background: #fffdf8;
+    border: 1px solid #e3c77a;
+    border-radius: 14px;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .option:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
+  }
+  .option-icon {
+    width: 56px; height: 56px; margin: 0 auto 0.9rem; border-radius: 50%;
+    background: var(--color-burgundy); color: var(--color-gold);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .option-icon svg { width: 28px; height: 28px; }
+  .option h3 {
+    margin: 0 0 0.5rem; color: var(--color-burgundy);
+    font-family: var(--font-heading); font-size: 1.25rem;
+  }
+  .option p { margin: 0; color: #666; font-size: 0.93rem; line-height: 1.7; }
+
+  .or-circle {
+    align-self: center;
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--color-gold); color: var(--color-burgundy);
+    font-size: 0.85rem; font-weight: 800; letter-spacing: 1px;
+    display: flex; align-items: center; justify-content: center;
+    animation: orPulse 2.6s ease-in-out 1.8s infinite;
+  }
+  @keyframes orPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(213, 173, 50, 0.5); }
+    50% { box-shadow: 0 0 0 12px rgba(213, 173, 50, 0); }
+  }
 
   /* Why choose us grid */
   .values-grid {
     display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
     max-width: 900px; margin: 0 auto;
   }
+  .vc { height: 100%; }
   .value-card {
+    height: 100%;
     background: #fff; padding: 2rem; border-radius: 12px;
     border: 1px solid #eee; box-shadow: 0 4px 12px rgba(0,0,0,0.03);
     transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
-    animation: fadeUp 0.6s ease both;
   }
-  .value-card:nth-child(1) { animation-delay: 0.05s; }
-  .value-card:nth-child(2) { animation-delay: 0.15s; }
-  .value-card:nth-child(3) { animation-delay: 0.25s; }
-  .value-card:nth-child(4) { animation-delay: 0.35s; }
   .value-card:hover {
     transform: translateY(-6px); border-color: var(--color-gold);
     box-shadow: 0 14px 30px rgba(128, 0, 32, 0.08);
@@ -219,11 +737,11 @@ const seo = generateSEO('About Us', 'Learn about Suvarna Bhagya, our mission, an
     text-align: center; max-width: 700px; margin: 0 auto 2.5rem;
     color: #555; font-size: 1.05rem; line-height: 1.7;
   }
+  .branch-wrap { max-width: 700px; margin: 0 auto; }
   .branch-card {
     display: flex; align-items: center; gap: 1.5rem;
     background: #fff; padding: 2rem 2.5rem; border-radius: 14px;
     border: 1px solid #eee; box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-    max-width: 700px; margin: 0 auto;
     transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
   }
   .branch-card:hover {
@@ -246,25 +764,55 @@ const seo = generateSEO('About Us', 'Learn about Suvarna Bhagya, our mission, an
     font-size: 0.85rem !important; font-weight: 600;
   }
 
-  /* ---------- GLOBAL ANIMATION ---------- */
+  /* ---------- HEADER ANIMATION ---------- */
   @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
   /* ---------- RESPONSIVE ---------- */
   @media (max-width: 900px) {
     .mission-block { grid-template-columns: 1fr; gap: 2.5rem; }
     .block-stats { flex-direction: row; flex-wrap: wrap; }
-    .stat-card { flex: 1; min-width: 120px; }
+    .stat-wrap { flex: 1; min-width: 120px; }
     .page-header h1 { font-size: 2.4rem; }
+    .hl-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 768px) {
     .values-grid { grid-template-columns: 1fr; }
     .about-content { padding: 4rem 0; }
     .about-block { margin-bottom: 4rem; }
+    .sec-title { font-size: 1.8rem; }
+
+    /* slide up instead of sideways on small screens */
+    :global(.about-anim) .rv-left,
+    :global(.about-anim) .rv-right { transform: translateY(34px); }
+  }
+  @media (max-width: 700px) {
+    .gift-banner { flex-direction: column; text-align: center; padding: 1.5rem 1.2rem; }
+    .options { grid-template-columns: 1fr; }
+    .or-circle { justify-self: center; }
+    .benefits-panel { padding: 2.4rem 1.2rem 2rem; }
+  }
+  @media (max-width: 600px) {
+    .hl-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 480px) {
     .page-header { padding: 4.5rem 0 4rem; }
     .page-header h1 { font-size: 1.9rem; }
     .branch-card { flex-direction: column; text-align: center; padding: 1.8rem; }
     .stat-card strong { font-size: 1.6rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .shimmer,
+    .gift-banner::after,
+    .gift-banner-icon,
+    .or-circle,
+    .header-decor-right {
+      animation: none !important;
+    }
+    .header-content {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
   }
 </style>

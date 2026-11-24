@@ -12,64 +12,277 @@ import CTASection from '../components/CTASection.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
 import OfferPopup from '../components/OfferPopup.astro';
 import OfferBanner from '../components/OfferBanner.astro';
+import SchemeHighlights from '../components/SchemeHighlights.astro';
+import FinancialCalculation from '../components/FinancialCalculation.astro';
 ---
 
 <MainLayout title="Home">
+  <!-- Turns on the hidden "before scroll" state (skipped if user prefers reduced motion) -->
+  <script is:inline>
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('reveal-ready');
+    }
+  </script>
+
   <HeroSection />
   <OfferPopup />
 
-  <AboutSection />
+  <div data-reveal>
+    <AboutSection />
+  </div>
 
-  <WhyChooseUs />
+  <SchemeHighlights />
+
+  <div data-reveal>
+    <WhyChooseUs />
+  </div>
 
   <!-- Scheme Options -->
-  <section class="schemes-overview" style="padding: 6rem 0; background: #fff;">
+  <section class="schemes-overview" style="padding: 6rem 0; background: #fff; overflow: hidden;">
     <div class="container">
       <!-- Centered Heading -->
       <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
-        <span class="eyebrow" style="display: block; color: var(--color-gold-dark); font-size: 0.85rem; letter-spacing: 2px; font-weight: 600; margin-bottom: 0.5rem;">— SCHEME OPTIONS —</span>
-        <h2 style="font-size: 2.2rem; color: var(--color-burgundy); margin: 0;">Choose Your Scheme</h2>
+        <span
+          class="eyebrow"
+          data-reveal
+          style="display: block; color: var(--color-gold-dark); font-size: 0.85rem; letter-spacing: 2px; font-weight: 600; margin-bottom: 0.5rem;"
+        >
+          — SCHEME OPTIONS —
+        </span>
+
+        <h2 class="scheme-title" data-words style="font-size: 2.2rem; color: var(--color-burgundy); margin: 0;">
+          <span class="word"><span class="word-inner" style="--i:0">Choose</span></span>
+          <span class="word"><span class="word-inner" style="--i:1">Your</span></span>
+          <span class="word"><span class="word-inner shimmer" style="--i:2">Scheme</span></span>
+        </h2>
+
+        <div class="title-line" data-line></div>
       </div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1000px; margin: 0 auto;">
-        <SchemeCard
-          type="weight"
-          title="Weight Based Scheme"
-          subtitle="Every monthly installment is converted into gold at the applicable gold rate on the payment date. Your accumulated gold is redeemed against jewellery at maturity."
-          features={[
-            "Ideal for those who want to build gold over time",
-            "Accumulates gold at today's rate every month",
-            "Benefit from gold appreciation over time",
-            "Redeem against jewellery at scheme maturity",
-            "Cancel: refund minus 20% of one month's installment"
-          ]}
-        />
-        <SchemeCard
-          type="amount"
-          title="Amount Based Scheme"
-          subtitle="Your monthly installments remain as money throughout the tenure. At maturity, the full accumulated amount is redeemed against jewellery."
-          features={[
-            "Ideal for those who prefer fixed monthly savings",
-            "Fixed savings — installments retained as currency",
-            "Predictable — no market dependency",
-            "Full amount redeemable against jewellery",
-            "Cancel: 100% refund of all deposited installments"
-          ]}
-        />
+      <div class="scheme-grid">
+        <div class="scheme-item" data-reveal="left" style="--d:0.1">
+          <SchemeCard
+            type="weight"
+            title="Weight Based Scheme"
+            subtitle="Every monthly installment is converted into gold at the applicable gold rate on the payment date. Your accumulated gold is redeemed against jewellery at maturity."
+            features={[
+              "Ideal for those who want to build gold over time",
+              "Accumulates gold at today's rate every month",
+              "Benefit from gold appreciation over time",
+              "Redeem against jewellery at scheme maturity",
+              "Cancel: refund minus 20% of one month's installment"
+            ]}
+          />
+        </div>
+
+        <div class="scheme-item" data-reveal="right" style="--d:0.3">
+          <SchemeCard
+            type="amount"
+            title="Amount Based Scheme"
+            subtitle="Your monthly installments remain as money throughout the tenure. At maturity, the full accumulated amount is redeemed against jewellery."
+            features={[
+              "Ideal for those who prefer fixed monthly savings",
+              "Fixed savings — installments retained as currency",
+              "Predictable — no market dependency",
+              "Full amount redeemable against jewellery",
+              "Cancel: 100% refund of all deposited installments"
+            ]}
+          />
+        </div>
       </div>
     </div>
   </section>
 
+  <FinancialCalculation />
+
   <!-- Offer Banner -->
-  <OfferBanner />
+  <div data-reveal="zoom">
+    <OfferBanner />
+  </div>
 
-  <HowItWorks />
+  <div data-reveal>
+    <HowItWorks />
+  </div>
 
-  <AppPromoSection />
+  <div data-reveal>
+    <AppPromoSection />
+  </div>
 
+  <!-- CompanyContribution has its own animations -->
   <CompanyContribution />
-  <CTASection />
 
-  <HelpSection />
+  <div data-reveal>
+    <CTASection />
+  </div>
+
+  <div data-reveal>
+    <HelpSection />
+  </div>
+
   <WhatsAppButton />
 </MainLayout>
+
+<script>
+  // Adds "is-in" when an element scrolls into view, which starts its animation
+  const targets = document.querySelectorAll<HTMLElement>(
+    '[data-reveal], [data-words], [data-line]'
+  );
+
+  if (!('IntersectionObserver' in window)) {
+    targets.forEach((el) => el.classList.add('is-in'));
+  } else {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-in');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0, rootMargin: '0px 0px -12% 0px' }
+    );
+
+    targets.forEach((el) => observer.observe(el));
+  }
+</script>
+
+<style>
+  /* ---------- Scheme grid ---------- */
+  .scheme-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .scheme-item {
+    height: 100%;
+  }
+
+  .scheme-item > :global(*) {
+    height: 100%;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .scheme-item:hover > :global(*) {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px rgba(120, 13, 46, 0.12);
+  }
+
+  /* ---------- Scroll reveal ---------- */
+  :global(.reveal-ready) [data-reveal] {
+    opacity: 0;
+    transform: translateY(45px);
+    transition:
+      opacity 0.9s ease,
+      transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition-delay: calc(var(--d, 0) * 1s);
+  }
+
+  :global(.reveal-ready) [data-reveal='left'] {
+    transform: translateX(-70px);
+  }
+
+  :global(.reveal-ready) [data-reveal='right'] {
+    transform: translateX(70px);
+  }
+
+  :global(.reveal-ready) [data-reveal='zoom'] {
+    transform: scale(0.92) translateY(30px);
+  }
+
+  :global(.reveal-ready) [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ---------- Heading word-by-word effect ---------- */
+  .word {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    padding-bottom: 0.15em;
+    margin-bottom: -0.15em;
+  }
+
+  .word-inner {
+    display: inline-block;
+  }
+
+  :global(.reveal-ready) [data-words] .word-inner {
+    transform: translateY(115%);
+  }
+
+  :global(.reveal-ready) [data-words].is-in .word-inner {
+    transform: none;
+    transition: transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition-delay: calc(var(--i) * 0.15s + 0.15s);
+  }
+
+  /* Gold shimmer on the last word */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      #a9822a 0%,
+      #a9822a 35%,
+      #f3d77a 50%,
+      #a9822a 65%,
+      #a9822a 100%
+    );
+    background-size: 220% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s linear infinite;
+  }
+
+  @keyframes shimmer {
+    from { background-position: 100% center; }
+    to { background-position: -100% center; }
+  }
+
+  /* Gold line that grows under the heading */
+  .title-line {
+    width: 70px;
+    height: 2px;
+    margin: 1rem auto 0;
+    background: linear-gradient(90deg, transparent, var(--color-gold, #d5ad32), transparent);
+  }
+
+  :global(.reveal-ready) [data-line] {
+    width: 0;
+  }
+
+  :global(.reveal-ready) [data-line].is-in {
+    width: 70px;
+    transition: width 0.9s ease 0.5s;
+  }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width: 768px) {
+    .scheme-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 0 1rem;
+    }
+
+    .section-header h2 {
+      font-size: 1.8rem !important;
+    }
+
+    /* Slide up instead of sideways, so the page never scrolls horizontally */
+    :global(.reveal-ready) [data-reveal='left'],
+    :global(.reveal-ready) [data-reveal='right'] {
+      transform: translateY(45px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .shimmer {
+      animation: none;
+    }
+  }
+</style>

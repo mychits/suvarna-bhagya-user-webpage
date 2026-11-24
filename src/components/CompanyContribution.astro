@@ -1,18 +1,61 @@
 ---
 import { PLAY_STORE_URL } from '../data/navigation';
+
+// Figures taken from the Suvarna Bhagya flyer
+// chit value = amount paid + dividend + bonus
+const examples = [
+  {
+    key: 'gold',
+    label: 'Gold Saving',
+    chitValue: 15000,
+    instalment: 1000,
+    months: 12,
+    paid: 12000,
+    dividend: 2000,
+    bonus: 1000,
+  },
+  {
+    key: 'fixed',
+    label: 'Fixed Gold Saving',
+    chitValue: 50000,
+    instalment: 3000,
+    months: 14,
+    paid: 42000,
+    dividend: 6000,
+    bonus: 2000,
+  },
+];
+
+const first = examples[0];
+const inr = (n: number) => new Intl.NumberFormat('en-IN').format(n);
+const pct = (v: number, total: number) => `${((v / total) * 100).toFixed(2)}%`;
+
+const ticker = [
+  'Free gift at the time of joining',
+  'Monthly dividend',
+  'Bonus on your instalments paid*',
+  '50% discount on making charges',
+  '0% wastage',
+  'Smart saving plans',
+];
 ---
 
 <section class="contribution-section">
   <div class="container contrib-inner">
     <!-- LEFT: card graphic -->
-    <div class="contrib-graphic">
+    <div class="contrib-graphic reveal reveal-left" style="--d:0.1">
+      <span class="sparkle" style="--x:8%; --y:14%; --s:14px; --delay:0s"></span>
+      <span class="sparkle" style="--x:88%; --y:10%; --s:20px; --delay:0.8s"></span>
+      <span class="sparkle" style="--x:92%; --y:70%; --s:12px; --delay:1.6s"></span>
+      <span class="sparkle" style="--x:4%; --y:78%; --s:18px; --delay:2.2s"></span>
+
       <div class="card-back"></div>
       <div class="card-front">
         <span class="card-eyebrow">COMPANY CONTRIBUTION</span>
-        <h3>Exclusive Completion Bonus</h3>
+        <h3>You Save. We Add.</h3>
         <p>
-          Successfully complete your Suvarna Unnati Scheme and Unnati Jewellers
-          rewards you with exclusive benefits as per the applicable scheme terms.
+          Every instalment you pay is topped up with a Dividend and a Bonus, as
+          per the applicable scheme terms.
         </p>
         <div class="gift-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -28,26 +71,92 @@ import { PLAY_STORE_URL } from '../data/navigation';
 
     <!-- RIGHT: content -->
     <div class="contrib-content">
-      <span class="section-eyebrow">BONUS BENEFIT</span>
-      <h2>Company Contribution</h2>
+      <span class="section-eyebrow reveal" style="--d:0.1">BONUS BENEFIT</span>
+
+      <h2 class="title">
+        <span class="word"><span class="word-inner" style="--i:0">Company</span></span>
+        <span class="word"><span class="word-inner shimmer" style="--i:1">Contribution</span></span>
+      </h2>
       <div class="gold-line"></div>
 
-      <p>
-        At Unnati Jewellers, we believe in rewarding our loyal customers. Upon
-        successful completion of your Suvarna Unnati Scheme, we offer exclusive
-        benefits as per the applicable scheme terms and conditions.
+      <p class="reveal" style="--d:0.45">
+        At Suvarna Bhagya, every instalment you pay is backed by extra value
+        from us. On top of your monthly savings you receive a Dividend and a
+        Bonus, so your chit value is always more than what you put in.
       </p>
-      <p>
-        This contribution makes your jewellery purchase even more rewarding —
-        because we believe that when our customers grow, we grow with them.
+      <p class="reveal" style="--d:0.55">
+        Along with a free gift at the time of joining, you enjoy 50% discount on
+        making charges and 0% wastage on your jewellery purchase, as per the
+        applicable scheme conditions.
       </p>
 
-      <div class="highlight-box">
-        The exact contribution amount and terms are detailed in the scheme-specific
-        Terms &amp; Conditions available on the Unnati App and website.
+      <!-- Breakdown -->
+      <div
+        class="breakdown reveal"
+        style="--d:0.65"
+        data-examples={JSON.stringify(examples)}
+      >
+        <div class="tabs" role="tablist" aria-label="Choose a scheme">
+          {examples.map((ex, i) => (
+            <button
+              type="button"
+              role="tab"
+              class={`tab ${i === 0 ? 'is-active' : ''}`}
+              aria-selected={i === 0 ? 'true' : 'false'}
+              data-index={i}
+            >
+              {ex.label}
+              <small>₹{inr(ex.chitValue)}</small>
+            </button>
+          ))}
+        </div>
+
+        <div
+          class="bar"
+          style={`--paid:${pct(first.paid, first.chitValue)}; --dividend:${pct(first.dividend, first.chitValue)}; --bonus:${pct(first.bonus, first.chitValue)};`}
+          aria-hidden="true"
+        >
+          <span class="seg seg-paid"></span>
+          <span class="seg seg-dividend"></span>
+          <span class="seg seg-bonus"></span>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-label"><i class="dot dot-paid"></i>You pay</span>
+            <strong>₹<span data-field="paid" data-value="0">{inr(first.paid)}</span></strong>
+            <small data-field="paidNote">₹{inr(first.instalment)} × {first.months} months</small>
+          </div>
+          <div class="stat">
+            <span class="stat-label"><i class="dot dot-dividend"></i>Dividend</span>
+            <strong>+ ₹<span data-field="dividend" data-value="0">{inr(first.dividend)}</span></strong>
+            <small>Added by us</small>
+          </div>
+          <div class="stat">
+            <span class="stat-label"><i class="dot dot-bonus"></i>Bonus</span>
+            <strong>+ ₹<span data-field="bonus" data-value="0">{inr(first.bonus)}</span></strong>
+            <small>On instalments paid*</small>
+          </div>
+        </div>
+
+        <div class="total-row">
+          <span>Total chit value you get</span>
+          <strong>₹<span data-field="total" data-value="0">{inr(first.chitValue)}</span></strong>
+        </div>
       </div>
 
-      <a href={PLAY_STORE_URL} target="_blank" rel="noopener" class="join-btn">
+      <div class="highlight-box reveal" style="--d:0.75">
+        *Dividend, bonus and other benefits are subject to the scheme-specific
+        Terms &amp; Conditions available on the Suvarna Bhagya app and website.
+      </div>
+
+      <a
+        href={PLAY_STORE_URL}
+        target="_blank"
+        rel="noopener"
+        class="join-btn reveal"
+        style="--d:0.85"
+      >
         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <rect x="6" y="2" width="12" height="20" rx="2"></rect>
           <line x1="11" y1="18" x2="13" y2="18"></line>
@@ -56,42 +165,177 @@ import { PLAY_STORE_URL } from '../data/navigation';
       </a>
     </div>
   </div>
+
+  <!-- Scrolling benefit ticker -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      {[...ticker, ...ticker].map((text) => (
+        <span class="ticker-item">
+          {text}
+          <i class="ticker-star"></i>
+        </span>
+      ))}
+    </div>
+  </div>
 </section>
+
+<script>
+  type Example = {
+    key: string;
+    label: string;
+    chitValue: number;
+    instalment: number;
+    months: number;
+    paid: number;
+    dividend: number;
+    bonus: number;
+  };
+
+  const section = document.querySelector<HTMLElement>('.contribution-section');
+  const panel = section?.querySelector<HTMLElement>('.breakdown');
+
+  if (section && panel) {
+    const examples: Example[] = JSON.parse(panel.dataset.examples ?? '[]');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const inr = new Intl.NumberFormat('en-IN');
+
+    const tabs = Array.from(panel.querySelectorAll<HTMLButtonElement>('.tab'));
+    const bar = panel.querySelector<HTMLElement>('.bar');
+    const field = (name: string) =>
+      panel.querySelector<HTMLElement>(`[data-field="${name}"]`);
+
+    let runCounter = 0;
+
+    // Count a number up (or down) to a new value
+    const countTo = (el: HTMLElement | null, to: number) => {
+      if (!el) return;
+      const from = Number(el.dataset.value ?? 0);
+      el.dataset.value = String(to);
+
+      if (reduceMotion) {
+        el.textContent = inr.format(to);
+        return;
+      }
+
+      const runId = String(++runCounter);
+      el.dataset.run = runId;
+      const start = performance.now();
+      const duration = 1300;
+
+      const tick = (now: number) => {
+        if (el.dataset.run !== runId) return;
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = inr.format(Math.round(from + (to - from) * eased));
+        if (progress < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+
+    const show = (index: number) => {
+      const ex = examples[index];
+      if (!ex) return;
+
+      tabs.forEach((tab, i) => {
+        const active = i === index;
+        tab.classList.toggle('is-active', active);
+        tab.setAttribute('aria-selected', String(active));
+      });
+
+      const pct = (v: number) => `${((v / ex.chitValue) * 100).toFixed(2)}%`;
+      bar?.style.setProperty('--paid', pct(ex.paid));
+      bar?.style.setProperty('--dividend', pct(ex.dividend));
+      bar?.style.setProperty('--bonus', pct(ex.bonus));
+
+      const note = field('paidNote');
+      if (note) note.textContent = `₹${inr.format(ex.instalment)} × ${ex.months} months`;
+
+      countTo(field('paid'), ex.paid);
+      countTo(field('dividend'), ex.dividend);
+      countTo(field('bonus'), ex.bonus);
+      countTo(field('total'), ex.chitValue);
+    };
+
+    tabs.forEach((tab, i) => tab.addEventListener('click', () => show(i)));
+
+    // Start animations when the section scrolls into view
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      section.classList.add('is-visible');
+      show(0);
+    } else {
+      section.classList.add('anim');
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            section.classList.add('is-visible');
+            show(0);
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
+      );
+      observer.observe(section);
+    }
+  }
+</script>
 
 <style>
   .contribution-section {
-    padding: 6rem 0;
+    padding: 6rem 0 0;
     background: #fff;
+    overflow: hidden;
   }
+
   .contrib-inner {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.05fr;
     gap: 4rem;
     align-items: center;
+    padding-bottom: 5rem;
+  }
+
+  /* ---------- Scroll reveal (only when JS adds .anim) ---------- */
+  .anim .reveal {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+      opacity 0.8s ease,
+      transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition-delay: calc(var(--d, 0) * 1s);
+  }
+  .anim .reveal-left {
+    transform: translateX(-60px);
+  }
+  .anim.is-visible .reveal {
+    opacity: 1;
+    transform: none;
   }
 
   /* ---------- Card graphic ---------- */
   .contrib-graphic {
     position: relative;
-    height: 350px;
+    height: 380px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
+
   .card-back {
     position: absolute;
     width: 360px;
-    height: 200px;
+    height: 210px;
     background: #f5e6c8;
     border: 1px solid #e3c77a;
     border-radius: 16px;
     transform: translate(28px, 22px) rotate(4deg);
+    animation: floatBack 6s ease-in-out infinite;
   }
+
   .card-front {
     position: relative;
     z-index: 2;
     width: 360px;
-    height: 200px;
+    height: 210px;
     padding: 1.6rem 1.7rem;
     border-radius: 16px;
     background: linear-gradient(135deg, #8a1c3a 0%, #7a0a38 45%, #6b0830 100%);
@@ -100,35 +344,108 @@ import { PLAY_STORE_URL } from '../data/navigation';
     box-shadow: 0 18px 40px rgba(122, 10, 56, 0.35);
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    animation: floatFront 6s ease-in-out infinite;
   }
+
+  /* light sweep across the card */
+  .card-front::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -60%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(
+      100deg,
+      transparent,
+      rgba(255, 223, 105, 0.22),
+      transparent
+    );
+    transform: skewX(-18deg);
+    animation: cardSweep 5s ease-in-out infinite 1.5s;
+  }
+
   .card-eyebrow {
     color: var(--color-gold, #d4a937);
     font-size: 0.65rem;
     font-weight: 600;
     letter-spacing: 2px;
   }
+
   .card-front h3 {
     color: #fff;
-    font-size: 1.35rem;
+    font-size: 1.45rem;
     font-weight: 600;
-    margin: 0.3rem 0 0.6rem;
+    margin: 0.35rem 0 0.6rem;
     line-height: 1.2;
   }
+
   .card-front p {
-    font-size: 0.8rem;
-    line-height: 1.5;
+    font-size: 0.82rem;
+    line-height: 1.55;
     color: #f0c9d4;
     margin: 0;
   }
+
   .gift-icon {
     margin-top: auto;
     width: 28px;
     height: 28px;
     color: var(--color-gold, #d4a937);
+    transform-origin: 50% 90%;
+    animation: giftWiggle 4s ease-in-out infinite 2s;
   }
+
   .gift-icon svg {
     width: 100%;
     height: 100%;
+  }
+
+  .sparkle {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    z-index: 3;
+    width: var(--s);
+    height: var(--s);
+    background: #d5ad32;
+    clip-path: polygon(
+      50% 0,
+      62% 38%,
+      100% 50%,
+      62% 62%,
+      50% 100%,
+      38% 62%,
+      0 50%,
+      38% 38%
+    );
+    opacity: 0.2;
+    animation: twinkle 3s ease-in-out infinite;
+    animation-delay: var(--delay);
+  }
+
+  @keyframes floatFront {
+    0%, 100% { transform: rotate(-3deg) translateY(0); }
+    50% { transform: rotate(-3deg) translateY(-10px); }
+  }
+  @keyframes floatBack {
+    0%, 100% { transform: translate(28px, 22px) rotate(4deg); }
+    50% { transform: translate(28px, 32px) rotate(4deg); }
+  }
+  @keyframes cardSweep {
+    0% { left: -60%; }
+    45%, 100% { left: 140%; }
+  }
+  @keyframes giftWiggle {
+    0%, 82%, 100% { transform: rotate(0); }
+    86% { transform: rotate(-12deg) scale(1.1); }
+    90% { transform: rotate(10deg) scale(1.1); }
+    94% { transform: rotate(-6deg); }
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.15; transform: scale(0.6) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1) rotate(45deg); }
   }
 
   /* ---------- Right content ---------- */
@@ -136,7 +453,7 @@ import { PLAY_STORE_URL } from '../data/navigation';
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    color: var(--color-gold, #d4a937);
+    color: var(--color-gold-dark, #9a7627);
     font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: 2.5px;
@@ -147,19 +464,71 @@ import { PLAY_STORE_URL } from '../data/navigation';
     height: 1px;
     background: var(--color-gold, #d4a937);
   }
-  .contrib-content h2 {
+
+  /* Word-by-word heading reveal */
+  .title {
     color: var(--color-burgundy, #7a0a38);
-    font-size: 2.6rem;
-    font-weight: 500;
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4.5vw, 2.8rem);
+    font-weight: 600;
     line-height: 1.15;
     margin: 0.6rem 0 0;
   }
+  .word {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+    padding-bottom: 0.15em;
+    margin-bottom: -0.15em;
+  }
+  .word-inner {
+    display: inline-block;
+  }
+  .anim .word-inner {
+    transform: translateY(115%);
+  }
+  .anim.is-visible .word-inner {
+    transform: none;
+    transition: transform 0.85s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition-delay: calc(var(--i) * 0.16s + 0.2s);
+  }
+
+  /* Gold shimmer text */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      #a9822a 0%,
+      #a9822a 35%,
+      #f3d77a 50%,
+      #a9822a 65%,
+      #a9822a 100%
+    );
+    background-size: 220% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s linear infinite;
+  }
+  @keyframes shimmer {
+    from { background-position: 100% center; }
+    to { background-position: -100% center; }
+  }
+
   .gold-line {
     width: 50px;
     height: 2px;
     margin: 0.9rem 0 1.6rem;
     background: linear-gradient(90deg, var(--color-gold, #d4a937), transparent);
   }
+  .anim .gold-line {
+    width: 0;
+  }
+  .anim.is-visible .gold-line {
+    width: 70px;
+    transition: width 0.9s ease 0.6s;
+  }
+
   .contrib-content p {
     color: var(--color-text-light, #6b6b6b);
     font-size: 0.95rem;
@@ -167,12 +536,163 @@ import { PLAY_STORE_URL } from '../data/navigation';
     margin: 0 0 1rem;
   }
 
+  /* ---------- Breakdown panel ---------- */
+  .breakdown {
+    margin: 1.6rem 0;
+    padding: 1.3rem;
+    background: #fffdf8;
+    border: 1px solid #ecd9a8;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(120, 13, 46, 0.06);
+  }
+
+  .tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1.1rem;
+    flex-wrap: wrap;
+  }
+
+  .tab {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 0.5rem 1rem;
+    border: 1px solid #e3c77a;
+    border-radius: 30px;
+    background: #f5e6c8;
+    color: #6b4a14;
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s, transform 0.3s;
+  }
+  .tab small {
+    font-size: 0.72rem;
+    font-weight: 500;
+    opacity: 0.8;
+  }
+  .tab:hover {
+    transform: translateY(-2px);
+  }
+  .tab.is-active {
+    background: var(--color-burgundy, #780d2e);
+    border-color: var(--color-burgundy, #780d2e);
+    color: #fff;
+  }
+  .tab.is-active small {
+    color: var(--color-gold, #d5ad32);
+    opacity: 1;
+  }
+  .tab:focus-visible {
+    outline: 2px solid var(--color-gold, #d5ad32);
+    outline-offset: 2px;
+  }
+
+  /* Stacked bar */
+  .bar {
+    display: flex;
+    height: 12px;
+    border-radius: 20px;
+    background: #f1e8d4;
+    overflow: hidden;
+    margin-bottom: 1.2rem;
+  }
+  .seg {
+    display: block;
+    height: 100%;
+    width: var(--paid);
+  }
+  .anim .seg {
+    width: 0;
+  }
+  .anim.is-visible .seg {
+    transition: width 1.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .anim.is-visible .seg-paid { width: var(--paid); transition-delay: 0.9s; }
+  .anim.is-visible .seg-dividend { width: var(--dividend); transition-delay: 1.1s; }
+  .anim.is-visible .seg-bonus { width: var(--bonus); transition-delay: 1.3s; }
+
+  .seg-paid { background: var(--color-burgundy, #780d2e); width: var(--paid); }
+  .seg-dividend { background: #d5ad32; width: var(--dividend); }
+  .seg-bonus { background: #f0d27a; width: var(--bonus); }
+
+  /* Stat tiles */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .stat {
+    padding: 0.8rem 0.7rem;
+    background: #fff;
+    border: 1px solid #f0e6d6;
+    border-radius: 10px;
+    text-align: center;
+  }
+  .stat-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #806b4e;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .dot-paid { background: var(--color-burgundy, #780d2e); }
+  .dot-dividend { background: #d5ad32; }
+  .dot-bonus { background: #f0d27a; }
+
+  .stat strong {
+    display: block;
+    margin: 0.4rem 0 0.2rem;
+    color: var(--color-burgundy, #780d2e);
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-variant-numeric: lining-nums tabular-nums;
+    white-space: nowrap;
+  }
+  .stat small {
+    display: block;
+    color: #8a7a5e;
+    font-size: 0.68rem;
+    line-height: 1.3;
+  }
+
+  .total-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 0.9rem;
+    border-top: 1px dashed #d5ad32;
+    color: #6b4a14;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .total-row strong {
+    color: var(--color-burgundy, #780d2e);
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+
+  /* ---------- Note + button ---------- */
   .highlight-box {
     background: #f5e6c8;
     border-left: 3px solid var(--color-gold, #d4a937);
     border-radius: 0 6px 6px 0;
     padding: 1.1rem 1.4rem;
-    margin: 1.8rem 0 1.6rem;
+    margin: 0 0 1.6rem;
     font-style: italic;
     font-size: 0.8rem;
     line-height: 1.7;
@@ -180,41 +700,170 @@ import { PLAY_STORE_URL } from '../data/navigation';
   }
 
   .join-btn {
+    position: relative;
+    overflow: hidden;
     display: inline-flex;
     align-items: center;
     gap: 10px;
     background: var(--color-burgundy, #7a0a38);
     color: #fff;
-    padding: 0.7rem 1.4rem;
+    padding: 0.75rem 1.5rem;
     border-radius: 4px;
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 1.2px;
     text-decoration: none;
-    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .join-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -80%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      100deg,
+      transparent,
+      rgba(255, 223, 105, 0.45),
+      transparent
+    );
+    transform: skewX(-20deg);
+    animation: btnShine 4s ease-in-out infinite 2s;
   }
   .join-btn:hover {
     background: #5e0830;
-    transform: translateY(-1px);
+  }
+  @keyframes btnShine {
+    0% { left: -80%; }
+    40%, 100% { left: 160%; }
+  }
+
+  /* Keep hover transform working after reveal finishes */
+  .anim.is-visible .join-btn:hover {
+    transform: translateY(-2px);
+    transition-delay: 0s;
+    transition-duration: 0.2s;
+  }
+
+  /* ---------- Ticker ---------- */
+  .ticker {
+    background: var(--color-burgundy, #780d2e);
+    border-top: 2px solid var(--color-gold, #d5ad32);
+    padding: 0.85rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker-track {
+    display: flex;
+    width: max-content;
+    animation: tickerMove 32s linear infinite;
+  }
+  .ticker:hover .ticker-track {
+    animation-play-state: paused;
+  }
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.6rem;
+    padding-right: 1.6rem;
+    color: #f3e5ab;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .ticker-star {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: var(--color-gold, #d5ad32);
+    clip-path: polygon(
+      50% 0,
+      62% 38%,
+      100% 50%,
+      62% 62%,
+      50% 100%,
+      38% 62%,
+      0 50%,
+      38% 38%
+    );
+  }
+  @keyframes tickerMove {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
 
   /* ---------- Responsive ---------- */
   @media (max-width: 900px) {
+    .contribution-section {
+      padding-top: 4rem;
+    }
     .contrib-inner {
       grid-template-columns: 1fr;
       gap: 3rem;
+      padding-bottom: 3.5rem;
     }
     .contrib-graphic {
-      height: 300px;
+      height: 320px;
     }
-    .contrib-content h2 {
-      font-size: 2.2rem;
+    .anim .reveal-left {
+      transform: translateY(40px);
     }
   }
+
   @media (max-width: 480px) {
     .card-front,
     .card-back {
       width: 290px;
+      height: 220px;
+    }
+    .card-front h3 {
+      font-size: 1.25rem;
+    }
+    .breakdown {
+      padding: 1rem;
+    }
+    .stats {
+      gap: 6px;
+    }
+    .stat {
+      padding: 0.7rem 0.4rem;
+    }
+    .stat strong {
+      font-size: 0.95rem;
+    }
+    .stat-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.5px;
+    }
+    .total-row strong {
+      font-size: 1.35rem;
+    }
+    .ticker-item {
+      font-size: 0.7rem;
+    }
+  }
+
+  /* ---------- Reduced motion ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    .card-front,
+    .card-back,
+    .card-front::after,
+    .gift-icon,
+    .sparkle,
+    .shimmer,
+    .join-btn::after,
+    .ticker-track {
+      animation: none;
+    }
+    .card-front {
+      transform: rotate(-3deg);
+    }
+    .card-back {
+      transform: translate(28px, 22px) rotate(4deg);
+    }
+    .sparkle {
+      opacity: 0.6;
     }
   }
 </style>

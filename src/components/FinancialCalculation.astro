@@ -1,0 +1,478 @@
+---
+const financialDetails = [
+  { label: "Chit Value", amount: "₹1,00,000" },
+  { label: "Monthly Installment", amount: "₹6,000" },
+  { label: "Duration", amount: "14 Months" },
+  { label: "Total Paid (₹6,000 × 14)", amount: "₹84,000" },
+  { label: "Additional Dividend", amount: "₹12,000" },
+];
+
+const bonuses = [
+  {
+    title: "Prompt Payment Bonus",
+    percentage: "2%",
+    amount: "₹2,000",
+    description: "For eligible subscribers who pay installments on time.",
+  },
+  {
+    title: "AutoPay / e-Mandate Bonus",
+    percentage: "2%",
+    amount: "₹2,000",
+    description:
+      "For eligible subscribers using AutoPay, e-Mandate or online payment.",
+  },
+];
+---
+
+<section class="financial-section" id="financial-calculation">
+  <div class="financial-container">
+    <div class="financial-heading">
+      <span class="financial-eyebrow">YOUR SAVINGS, YOUR BENEFITS</span>
+      <h2>Financial Calculation</h2>
+      <p>
+        Understand your monthly savings, maturity benefits and additional
+        rewards with our Swarna Bhagya scheme.
+      </p>
+    </div>
+
+    <div class="financial-main">
+      <!-- Main Calculation -->
+      <div class="calculation-card">
+        <div class="calculation-header">
+          <span>SWARNA BHAGYA SCHEME</span>
+          <h3>₹1,00,000</h3>
+          <p>Chit Value · 14 Months</p>
+        </div>
+
+        <div class="calculation-body">
+          <h3>Monthly Savings & Maturity</h3>
+
+          {financialDetails.map((item) => (
+            <div class="calculation-row">
+              <span>{item.label}</span>
+              <strong>{item.amount}</strong>
+            </div>
+          ))}
+
+          <div class="maturity-total">
+            <span>Total Maturity Benefit</span>
+            <strong>₹96,000</strong>
+          </div>
+
+          <p class="calculation-note">
+            ₹84,000 total installments + ₹12,000 additional dividend.
+          </p>
+        </div>
+      </div>
+
+      <!-- Additional Benefits -->
+      <div class="benefits-card">
+        <div class="benefits-heading">
+          <span class="benefits-eyebrow">EXTRA REWARDS</span>
+          <h3>Additional Bonuses</h3>
+          <p>
+            Enjoy additional benefits when you meet the applicable eligibility
+            conditions.
+          </p>
+        </div>
+
+        {bonuses.map((bonus) => (
+          <div class="bonus-item">
+            <div class="bonus-icon">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="9" />
+                <path d="M8 6.5h8" />
+                <path d="M8 9.5h8" />
+                <path d="M9 6.5c3.5 0 4.5 1.3 4.5 3s-1.5 3-4.5 3H8l7 6" />
+              </svg>
+            </div>
+
+            <div class="bonus-content">
+              <h4>{bonus.title}</h4>
+              <p>{bonus.description}</p>
+              <span>{bonus.percentage} Bonus</span>
+            </div>
+
+            <strong class="bonus-amount">{bonus.amount}</strong>
+          </div>
+        ))}
+
+        <div class="bonus-total">
+          <span>Total Additional Bonuses</span>
+          <strong>₹4,000</strong>
+        </div>
+
+        <div class="referral-card">
+          <div class="referral-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="10" cy="7" r="4" />
+              <path d="M20 8v6M23 11h-6" />
+            </svg>
+          </div>
+          <div>
+            <span>REFER & EARN</span>
+            <h4>Free 24K Gold Coin</h4>
+            <p>For every successful referral.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="financial-disclaimer">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 11v5M12 8h.01" />
+      </svg>
+      <p>
+        <strong>Important Note:</strong>
+        The ₹1,00,000 maturity value is calculated as ₹84,000 + ₹12,000 +
+        ₹4,000. The two payment bonuses of ₹2,000 each are additional benefits,
+        subject to eligibility and applicable scheme rules. The maturity benefit
+        of ₹96,000 does not include these additional bonuses.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .financial-section {
+    padding: 90px 20px;
+    background: #faf8f4;
+    scroll-margin-top: 100px;
+  }
+
+  .financial-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .financial-heading {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto 45px;
+  }
+
+  .financial-eyebrow,
+  .benefits-eyebrow {
+    color: #a17b35;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+
+  .financial-heading h2 {
+    color: var(--color-burgundy, #651b35);
+    font-size: clamp(28px, 4vw, 40px);
+    margin: 12px 0;
+  }
+
+  .financial-heading p {
+    color: #777;
+    line-height: 1.7;
+  }
+
+  .financial-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    align-items: stretch;
+  }
+
+  .calculation-card,
+  .benefits-card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid #eee5d7;
+    box-shadow: 0 10px 35px rgba(70, 35, 35, 0.06);
+  }
+
+  .calculation-header {
+    background: linear-gradient(135deg, #48152e, #762d46);
+    color: white;
+    padding: 30px;
+    text-align: center;
+  }
+
+  .calculation-header span {
+    color: #e7c77e;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 700;
+  }
+
+  .calculation-header h3 {
+    font-size: 38px;
+    color: #f5d994;
+    margin: 12px 0 5px;
+  }
+
+  .calculation-header p {
+    color: #eadde0;
+    margin: 0;
+    font-size: 13px;
+  }
+
+  .calculation-body {
+    padding: 28px;
+  }
+
+  .calculation-body > h3,
+  .benefits-heading h3 {
+    font-size: 20px;
+    color: #4b2432;
+    margin: 0 0 22px;
+  }
+
+  .calculation-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 15px 0;
+    border-bottom: 1px solid #f0ece5;
+    font-size: 13px;
+  }
+
+  .calculation-row span {
+    color: #777;
+  }
+
+  .calculation-row strong {
+    color: #3f2730;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .maturity-total {
+    background: #f8f0df;
+    border: 1px solid #e8d4a6;
+    border-radius: 10px;
+    margin-top: 22px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .maturity-total span {
+    color: #775b30;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .maturity-total strong {
+    color: #76521c;
+    font-size: 30px;
+  }
+
+  .calculation-note {
+    color: #888;
+    font-size: 11px;
+    line-height: 1.6;
+    margin: 15px 0 0;
+  }
+
+  .benefits-card {
+    padding: 30px;
+  }
+
+  .benefits-heading p {
+    color: #888;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-top: -12px;
+    margin-bottom: 25px;
+  }
+
+  .bonus-item {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 20px 0;
+    border-bottom: 1px solid #eee9e1;
+  }
+
+  .bonus-icon,
+  .referral-icon {
+    width: 43px;
+    height: 43px;
+    min-width: 43px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    background: #f8f0df;
+    color: #a17b35;
+  }
+
+  .bonus-icon svg,
+  .referral-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .bonus-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .bonus-content h4 {
+    color: #4b2432;
+    font-size: 14px;
+    margin: 0 0 5px;
+  }
+
+  .bonus-content p {
+    color: #888;
+    font-size: 11px;
+    line-height: 1.5;
+    margin: 0 0 6px;
+  }
+
+  .bonus-content span {
+    color: #a17b35;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .bonus-amount {
+    color: #6c4c20;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+
+  .bonus-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f0df;
+    padding: 18px;
+    border-radius: 10px;
+    margin-top: 22px;
+    color: #684b20;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .bonus-total strong {
+    font-size: 22px;
+  }
+
+  .referral-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #4b1933;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+  }
+
+  .referral-icon {
+    background: #ffffff18;
+    color: #e9c77d;
+  }
+
+  .referral-card span {
+    color: #e9c77d;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+  }
+
+  .referral-card h4 {
+    color: white;
+    font-size: 17px;
+    margin: 5px 0;
+  }
+
+  .referral-card p {
+    color: #e5d4dc;
+    font-size: 11px;
+    margin: 0;
+  }
+
+  .financial-disclaimer {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: #fff;
+    border: 1px solid #eee5d7;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 25px;
+  }
+
+  .financial-disclaimer svg {
+    width: 22px;
+    min-width: 22px;
+    color: #a17b35;
+  }
+
+  .financial-disclaimer p {
+    color: #777;
+    font-size: 12px;
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  .financial-disclaimer strong {
+    color: #4b2432;
+  }
+
+  @media (max-width: 768px) {
+    .financial-section {
+      padding: 65px 15px;
+    }
+
+    .financial-main {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .calculation-header h3 {
+      font-size: 32px;
+    }
+
+    .calculation-body,
+    .benefits-card {
+      padding: 22px 18px;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .calculation-card,
+    .benefits-card {
+      transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+    }
+
+    .calculation-card:hover,
+    .benefits-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 40px rgba(70, 35, 35, 0.1);
+    }
+  }
+</style>

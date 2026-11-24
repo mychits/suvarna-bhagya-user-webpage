@@ -1,129 +1,636 @@
+
 ---
 import { PLAY_STORE_URL } from '../data/navigation';
 ---
 
 <section class="hero-banner">
   <div class="container hero-inner">
+
     <div class="hero-content">
       <span class="badge">SAVINGS SCHEME</span>
-      <h1>Suvarna Bhagya<br/>Savings Scheme</h1>
-      
+
+      <h1>
+        Suvarna Bhagya
+        <br />
+        Savings Scheme
+      </h1>
+
       <ul class="hero-features">
-        <li>Pay 11 monthly installments and get the 12th installment as a bonus.</li>
-        <li>Redeem for any hallmark jewellery with no hidden making charges or wastage.</li>
-        <li>Flexible monthly installments starting as low as ₹1,000.</li>
+        <li>
+          Pay 14 monthly installments and receive the 2nd installment as a
+          dividend, along with a special Prompt Payer Bonus.
+        </li>
+        <li>
+          Redeem for any hallmark jewellery with no hidden making charges
+          or wastage at 0%.
+        </li>
+        <li>
+          Flexible monthly installments starting as low as ₹1,000.
+        </li>
       </ul>
-      
-      <a href="/plans" class="btn-outline">JOIN THE SCHEME</a>
+
+      <a href="/plans" class="btn-outline">
+        <span>JOIN THE SCHEME</span>
+        <span class="arrow-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path
+              d="M5 12H19M12 5L19 12L12 19"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </span>
+      </a>
     </div>
-    
+
     <div class="hero-graphics">
-      <!-- Floating Member Card -->
+
+      <!-- Wide Membership Card -->
       <div class="member-card">
+
         <div class="card-top">
-          <div>
-            <h4>SUVARNA BHAGYA</h4>
-            <span class="priority">PRIORITY MEMBER</span>
+          <div class="card-brand">
+            <span class="brand-symbol"></span>
+            <div>
+              <h4>SUVARNA BHAGYA</h4>
+              <span class="priority">PRIORITY MEMBER</span>
+            </div>
           </div>
-          <div class="gold-icon">👑</div>
+
+          <div class="card-emblem">
+            <svg viewBox="0 0 48 48" fill="none">
+              <path
+                d="M24 4L29 15L41 17L32 26L34 39L24 33L14 39L16 26L7 17L19 15L24 4Z"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+              />
+              <circle cx="24" cy="22" r="5" stroke="currentColor" />
+            </svg>
+          </div>
         </div>
-        <div class="gold-chip"></div>
-        <div class="card-number">•••• •••• •••• 1993</div>
+
+        <div class="card-middle">
+          <div class="gold-chip">
+            <span></span>
+          </div>
+
+          <div class="member-number">
+            <span>MEMBER ID</span>
+            <strong>•••• •••• •••• 1993</strong>
+          </div>
+        </div>
+
         <div class="card-bottom">
-          <div>
+          <div class="member-since">
             <span>MEMBER SINCE</span>
             <strong>10 / 22</strong>
           </div>
-          <div class="brand-name">Suvarna Jewellers</div>
+
+          <div class="brand-name">
+            Suvarna Jewellers
+          </div>
         </div>
+
+        <div class="card-shine"></div>
       </div>
+
+      <div class="card-decoration decoration-one"></div>
+      <div class="card-decoration decoration-two"></div>
+
     </div>
   </div>
 </section>
 
 <style>
   .hero-banner {
-    background: radial-gradient(circle at 30% 50%, #8a1335 0%, var(--color-burgundy) 100%);
-    padding: 8rem 0;
+    background:
+      radial-gradient(
+        ellipse at 75% 45%,
+        rgba(138, 19, 53, 0.9) 0%,
+        transparent 55%
+      ),
+      linear-gradient(120deg, #570d26, #74132f 55%, #3c0a1d);
+
+    padding: 7rem 0;
     color: #fff;
     overflow: hidden;
     position: relative;
+    isolation: isolate;
   }
-  .hero-inner { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; }
-  
-  .badge {
+
+  .hero-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(
+      rgba(212, 175, 55, 0.16) 1px,
+      transparent 1px
+    );
+    background-size: 30px 30px;
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  /* CONTENT ANIMATIONS */
+
+  .hero-content .badge {
     display: inline-block;
     border: 1px solid var(--color-gold);
     color: var(--color-gold);
-    padding: 0.4rem 1rem;
+    padding: 0.5rem 1.2rem;
     font-size: 0.75rem;
     letter-spacing: 2px;
     margin-bottom: 1.5rem;
+
+    animation: slideUp 0.7s ease both;
   }
-  
+
   .hero-content h1 {
     font-size: 3.5rem;
     color: #fff;
     line-height: 1.2;
     margin-bottom: 2rem;
+    animation: slideUp 0.8s ease 0.12s both;
   }
-  
-  .hero-features { list-style: none; margin-bottom: 3rem; }
+
+  .hero-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2.5rem;
+  }
+
   .hero-features li {
     position: relative;
     padding-left: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     font-size: 1.05rem;
-    color: #f0f0f0;
+    line-height: 1.7;
+    color: #f0e8e8;
+
+    opacity: 0;
+    animation: slideUp 0.7s ease forwards;
   }
+
+  .hero-features li:nth-child(1) {
+    animation-delay: 0.25s;
+  }
+
+  .hero-features li:nth-child(2) {
+    animation-delay: 0.4s;
+  }
+
+  .hero-features li:nth-child(3) {
+    animation-delay: 0.55s;
+  }
+
   .hero-features li::before {
-    content: '✓';
-    position: absolute; left: 0; top: 2px;
+    content: "✓";
+    position: absolute;
+    left: 0;
+    top: 2px;
     color: var(--color-gold);
     font-weight: bold;
+    font-size: 1.15rem;
   }
-  
-  /* The 3D-looking Card */
+
+  /* JOIN BUTTON */
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+
+    padding: 15px 27px;
+    border: 1px solid var(--color-gold);
+    border-radius: 50px;
+
+    color: var(--color-gold);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+
+    transition:
+      background 0.3s ease,
+      color 0.3s ease,
+      box-shadow 0.3s ease,
+      transform 0.3s ease;
+
+    animation: slideUp 0.7s ease 0.7s both;
+  }
+
+  .arrow-icon {
+    width: 23px;
+    height: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+  }
+
+  .arrow-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .btn-outline:hover {
+    background: var(--color-gold);
+    color: #501025;
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.25);
+    transform: translateY(-3px);
+  }
+
+  .btn-outline:hover .arrow-icon {
+    transform: translateX(6px);
+  }
+
+  /* WIDE MEMBERSHIP CARD */
+
+  .hero-graphics {
+    position: relative;
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1200px;
+
+    animation: cardEntrance 1s ease 0.3s both;
+  }
+
   .member-card {
-    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 16px;
-    padding: 2.5rem;
-    max-width: 400px;
-    margin: 0 auto;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    position: relative;
+    width: min(100%, 510px);
+    min-height: 265px;
+    padding: 1.8rem 2.2rem;
+
+    background:
+      linear-gradient(
+        125deg,
+        rgba(255, 255, 255, 0.17),
+        rgba(255, 255, 255, 0.04)
+      ),
+      linear-gradient(135deg, #781b36, #3f1023);
+
+    border: 1px solid rgba(230, 195, 105, 0.65);
+    border-radius: 22px;
+
+    box-shadow:
+      0 30px 65px rgba(0, 0, 0, 0.35),
+      inset 0 1px 1px rgba(255, 255, 255, 0.25);
+
+    backdrop-filter: blur(15px);
+    overflow: hidden;
+    z-index: 2;
+
+    animation: floatCard 5s ease-in-out infinite;
+  }
+
+  .member-card::before {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: rgba(212, 175, 55, 0.1);
+    right: -100px;
+    top: -130px;
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: relative;
     z-index: 2;
   }
-  .card-top { display: flex; justify-content: space-between; align-items: flex-start; }
-  .card-top h4 { color: #fff; margin: 0; font-family: var(--font-body); font-size: 1.1rem; letter-spacing: 1px; }
-  .priority { font-size: 0.7rem; color: var(--color-gold); letter-spacing: 1px; }
-  .gold-icon { font-size: 1.5rem; }
-  
-  .gold-chip {
-    width: 40px; height: 30px;
-    background: linear-gradient(135deg, #d4af37 0%, #aa8529 100%);
-    border-radius: 6px;
-    margin: 2rem 0 1rem;
+
+  .card-brand {
+    display: flex;
+    align-items: center;
+    gap: 13px;
   }
-  
-  .card-number {
-    font-family: monospace;
-    font-size: 1.2rem;
+
+  .brand-symbol {
+    width: 43px;
+    height: 43px;
+    border: 1px solid var(--color-gold);
+    border-radius: 50%;
+    position: relative;
+  }
+
+  .brand-symbol::before,
+  .brand-symbol::after {
+    content: "";
+    position: absolute;
+    inset: 9px;
+    border: 1px solid var(--color-gold);
+    border-radius: 50%;
+  }
+
+  .brand-symbol::after {
+    transform: rotate(45deg) scale(0.7);
+    border-radius: 2px;
+  }
+
+  .card-top h4 {
+    color: #fff;
+    margin: 0 0 5px;
+    font-size: 1.15rem;
+    letter-spacing: 1.5px;
+  }
+
+  .priority {
+    font-size: 0.65rem;
+    color: var(--color-gold);
     letter-spacing: 2px;
-    margin-bottom: 2rem;
-    color: rgba(255,255,255,0.8);
   }
-  
-  .card-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
-  .card-bottom span { display: block; font-size: 0.6rem; color: #ccc; letter-spacing: 1px; }
-  .card-bottom strong { font-size: 0.9rem; font-family: monospace; }
-  .brand-name { font-family: var(--font-heading); font-style: italic; font-size: 1.2rem; color: var(--color-gold); }
-  
+
+  .card-emblem {
+    width: 48px;
+    height: 48px;
+    color: var(--color-gold);
+  }
+
+  .card-emblem svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .card-middle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2rem 0 1.6rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .gold-chip {
+    width: 48px;
+    height: 36px;
+    background: linear-gradient(135deg, #f8e5a0, #b58a29);
+    border-radius: 7px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gold-chip::before,
+  .gold-chip::after {
+    content: "";
+    position: absolute;
+    border: 1px solid rgba(105, 73, 13, 0.5);
+  }
+
+  .gold-chip::before {
+    inset: 0 15px;
+  }
+
+  .gold-chip::after {
+    inset: 10px 0;
+  }
+
+  .member-number {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: right;
+  }
+
+  .member-number span,
+  .member-since span {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.6rem;
+    letter-spacing: 1.5px;
+  }
+
+  .member-number strong {
+    color: #fff;
+    font-family: monospace;
+    font-size: 1.05rem;
+    letter-spacing: 2px;
+  }
+
+  .card-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255, 255, 255, 0.17);
+    padding-top: 1rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .member-since {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .member-since strong {
+    color: #fff;
+    font-size: 0.9rem;
+  }
+
+  .brand-name {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--color-gold);
+  }
+
+  .card-shine {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      115deg,
+      transparent 35%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 65%
+    );
+    transform: translateX(-100%);
+    animation: cardShine 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .card-decoration {
+    position: absolute;
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .decoration-one {
+    width: 350px;
+    height: 350px;
+    right: -50px;
+    top: 0;
+  }
+
+  .decoration-two {
+    width: 430px;
+    height: 430px;
+    right: -90px;
+    top: -40px;
+  }
+
+  /* ANIMATIONS */
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes cardEntrance {
+    from {
+      opacity: 0;
+      transform: translateX(50px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+  }
+
+  @keyframes floatCard {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-9px);
+    }
+  }
+
+  @keyframes cardShine {
+    0%, 65%, 100% {
+      transform: translateX(-100%);
+    }
+    85% {
+      transform: translateX(100%);
+    }
+  }
+
+  /* TABLET */
+
   @media (max-width: 900px) {
-    .hero-inner { grid-template-columns: 1fr; text-align: center; }
-    .hero-features li { text-align: left; }
-    .hero-content h1 { font-size: 2.5rem; }
+    .hero-banner {
+      padding: 5rem 0;
+    }
+
+    .hero-inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 3rem;
+    }
+
+    .hero-content h1 {
+      font-size: 2.8rem;
+    }
+
+    .hero-features {
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+
+    .hero-graphics {
+      min-height: 320px;
+    }
+  }
+
+  /* MOBILE */
+
+  @media (max-width: 550px) {
+    .hero-banner {
+      padding: 4rem 0;
+    }
+
+    .hero-content h1 {
+      font-size: 2.15rem;
+    }
+
+    .hero-features li {
+      font-size: 0.93rem;
+    }
+
+    .member-card {
+      width: 100%;
+      min-height: 220px;
+      padding: 1.4rem;
+      border-radius: 17px;
+    }
+
+    .card-top h4 {
+      font-size: 0.95rem;
+    }
+
+    .card-emblem {
+      width: 38px;
+      height: 38px;
+    }
+
+    .card-middle {
+      margin: 1.5rem 0 1.2rem;
+    }
+
+    .member-number strong {
+      font-size: 0.85rem;
+    }
+
+    .brand-name {
+      font-size: 1rem;
+    }
+
+    .hero-graphics {
+      min-height: 260px;
+    }
+
+    .decoration-one {
+      width: 250px;
+      height: 250px;
+    }
+
+    .decoration-two {
+      width: 300px;
+      height: 300px;
+    }
+  }
+
+  /* ACCESSIBILITY */
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-banner *,
+    .hero-banner *::before,
+    .hero-banner *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+
+    .hero-content .badge,
+    .hero-content h1,
+    .hero-features li,
+    .btn-outline,
+    .hero-graphics {
+      opacity: 1;
+      transform: none;
+    }
   }
 </style>

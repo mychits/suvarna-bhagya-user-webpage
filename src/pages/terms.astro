@@ -1,27 +1,359 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro';
+import MainLayout from '../layouts/MainLayout.astro';
 import { generateSEO } from '../utils/seo';
-const seo = generateSEO('Terms & Conditions', 'Review the terms and conditions for our gold savings schemes.');
+
+const seo = generateSEO(
+  'Terms & Conditions',
+  'Read the terms and conditions, installment payment rules, bonus benefits, cancellation and refund policies for the Swarna Bhagya gold savings scheme.'
+);
+
+const sections = [
+  {
+    title: 'Monthly Installments',
+    paragraphs: [
+      'Monthly installments must be paid on or before the specified due date as communicated to the subscriber at the time of enrolment.',
+    ],
+  },
+  {
+    title: 'Prompt Payment Bonus',
+    paragraphs: [
+      'Subscribers who fail to pay their monthly installments within the prescribed due date will not be eligible for the prompt payment bonus.',
+    ],
+  },
+  {
+    title: 'Discontinuation of Scheme',
+    paragraphs: [
+      'Subscribers discontinuing the scheme before completion of the group will not be eligible for dividend or bonus benefits.',
+    ],
+  },
+  {
+    title: 'Refund on Discontinuation',
+    paragraphs: [
+      'In case of discontinuation, the amount paid will be refunded without cancellation charges, subject to the refund provisions of the scheme.',
+    ],
+  },
+  {
+    title: 'Refund Processing After Group Completion',
+    paragraphs: [
+      "Discontinued subscribers' refunds will be processed after completion of the respective group.",
+    ],
+  },
+  {
+    title: 'Cancellation and Refund Timeline',
+    paragraphs: [
+      'Cancellation and refund requests will be processed within 30 days, subject to applicable scheme conditions.',
+    ],
+  },
+  {
+    title: 'Dividend and Bonus Benefits',
+    paragraphs: [
+      'All dividend and bonus benefits will be calculated as per the scheme rules and final computation.',
+    ],
+  },
+  {
+    title: 'AutoPay / e-Mandate Benefits',
+    paragraphs: [
+      'AutoPay / e-Mandate subscribers will be eligible for applicable additional bonus benefits as announced by the management.',
+    ],
+  },
+  {
+    title: 'Scheme Management',
+    paragraphs: [
+      'The scheme is operated by <strong>Vijay Vinayaka Chit Funds Private Limited.</strong>',
+      '<strong>Swarna Bhagya</strong> is the marketing name of this scheme, marketed through <strong>MyChits.</strong>',
+    ],
+  },
+];
 ---
 
-<PageLayout title={seo.title} description={seo.description}>
-  <p>Last updated: November 2026</p>
-  
-  <h2>1. Scheme Overview</h2>
-  <p>These terms govern your participation in the Suvarna Bhagya gold savings scheme. Plan amounts, durations, and benefits are illustrative and subject to final approval and legal compliance.</p>
+<MainLayout title={seo.title} description={seo.description}>
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container header-content">
+      <span class="eyebrow">— LEGAL —</span>
+      <h1>Terms &amp; Conditions</h1>
+      <p>Payment rules, bonus benefits, cancellation and refund policies for the scheme.</p>
+    </div>
+    <div class="header-decor header-decor-left"></div>
+    <div class="header-decor header-decor-right"></div>
+  </div>
 
-  <h2>2. Eligibility and KYC</h2>
-  <p>Enrolment is subject to successful completion of KYC verification. You must be at least 18 years old and provide valid identity and address proof.</p>
+  <!-- Content -->
+  <div class="policy-wrap">
+    <div class="container">
+      <article class="policy-card">
+        <p class="updated">Last updated: November 2026</p>
 
-  <h2>3. Installments and Payments</h2>
-  <p>You agree to pay the scheduled monthly installments on time. Late payments may result in fees or affect your maturity benefits as per the specific scheme rules.</p>
+        {sections.map((section, index) => (
+          <section class="policy-section">
+            <div class="section-title">
+              <span class="section-num">{index + 1}</span>
+              <h2>{section.title}</h2>
+            </div>
+            {section.paragraphs.map((text) => (
+              <p set:html={text} />
+            ))}
+          </section>
+        ))}
 
-  <h2>4. Maturity and Redemption</h2>
-  <p>Redemption (cash or jewellery) is available only after the successful completion of the term and full payment of all installments. Redemption values are calculated based on approved scheme rules and are not guaranteed returns.</p>
+        <div class="policy-contact">
+          <div>
+            <strong>Questions about these terms?</strong>
+            <span>Our team is happy to explain any scheme condition.</span>
+          </div>
+          <a href="/contact" class="contact-btn">Contact Us</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</MainLayout>
 
-  <h2>5. Cancellation and Refunds</h2>
-  <p>If you choose to cancel your enrolment before maturity, refunds will be processed as per the cancellation policy, which may include deductions for administrative fees.</p>
+<style>
+  /* ---------- PAGE HEADER ---------- */
+  .page-header {
+    background: linear-gradient(135deg, var(--color-burgundy) 0%, #5a0a22 100%);
+    color: var(--color-ivory);
+    padding: 6rem 0 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header-content {
+    position: relative;
+    z-index: 2;
+    animation: fadeUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .eyebrow {
+    display: block;
+    color: var(--color-gold);
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+  .page-header h1 {
+    color: var(--color-gold);
+    font-size: 3.2rem;
+    line-height: 1.15;
+    margin: 0 0 1rem;
+    font-family: var(--font-heading);
+  }
+  .page-header p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.15rem;
+    max-width: 550px;
+    margin: 0 auto;
+  }
+  .header-decor {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--color-gold);
+    opacity: 0.06;
+    pointer-events: none;
+  }
+  .header-decor-left {
+    width: 350px;
+    height: 350px;
+    top: -100px;
+    left: -100px;
+  }
+  .header-decor-right {
+    width: 250px;
+    height: 250px;
+    bottom: -80px;
+    right: -80px;
+    animation: floatSlow 8s ease-in-out infinite;
+  }
+  @keyframes floatSlow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
 
-  <h2>6. Legal Compliance</h2>
-  <p>This scheme operates in compliance with applicable Indian laws. We do not promise guaranteed cash returns unless legally permitted under the final approved structure.</p>
-</PageLayout>
+  /* ---------- CONTENT ---------- */
+  .policy-wrap {
+    background: var(--color-ivory, #f9f6f0);
+    padding: 5rem 0 6rem;
+  }
+
+  .policy-card {
+    max-width: 860px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 3rem 3.2rem;
+    border-radius: 16px;
+    border: 1px solid #f0e6d6;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+    animation: fadeUp 0.8s ease both 0.2s;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .updated {
+    display: inline-block;
+    margin: 0 0 2rem;
+    padding: 0.4rem 1rem;
+    background: #fdf2eb;
+    color: var(--color-gold-dark, #9a7627);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .policy-section {
+    padding: 1.6rem 0;
+    border-bottom: 1px solid #f0e6d6;
+  }
+  .policy-section:first-of-type {
+    padding-top: 0;
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .section-num {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--color-burgundy);
+    color: var(--color-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+
+  .policy-section h2 {
+    color: var(--color-burgundy);
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    margin: 0;
+  }
+
+  .policy-section p {
+    margin: 0 0 0.7rem calc(34px + 0.9rem);
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+  .policy-section p:last-child {
+    margin-bottom: 0;
+  }
+  .policy-section p :global(strong) {
+    color: var(--color-burgundy);
+  }
+
+  /* Contact strip */
+  .policy-contact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding: 1.4rem 1.6rem;
+    background: #fdf8eb;
+    border-left: 3px solid var(--color-gold);
+    border-radius: 0 10px 10px 0;
+  }
+
+  .policy-contact strong {
+    display: block;
+    color: var(--color-burgundy);
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .policy-contact span {
+    color: #75502b;
+    font-size: 0.9rem;
+  }
+
+  .contact-btn {
+    flex-shrink: 0;
+    padding: 0.7rem 1.6rem;
+    background: var(--color-burgundy);
+    color: #fff;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .contact-btn:hover {
+    background: var(--color-gold);
+    color: var(--color-burgundy);
+    transform: translateY(-2px);
+  }
+
+  /* ---------- ANIMATION ---------- */
+  @keyframes fadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px) {
+    .page-header h1 {
+      font-size: 2.4rem;
+    }
+    .policy-wrap {
+      padding: 3.5rem 0 4rem;
+    }
+    .policy-card {
+      padding: 2.2rem 1.8rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .policy-section p {
+      margin-left: 0;
+    }
+    .policy-contact {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .contact-btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .page-header {
+      padding: 4.5rem 0 4rem;
+    }
+    .page-header h1 {
+      font-size: 1.9rem;
+    }
+    .policy-card {
+      padding: 1.6rem 1.2rem;
+    }
+    .policy-section h2 {
+      font-size: 1.15rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .header-content,
+    .policy-card {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+    .header-decor-right {
+      animation: none;
+    }
+  }
+</style>
